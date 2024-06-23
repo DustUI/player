@@ -1,5 +1,14 @@
 {
-  "extends": "@repo/typescript-config/base.json",
+  "$schema": "https://json.schemastore.org/tsconfig",
+  "display": "Dust Player Library",
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2015", "DOM"],
+    "module": "ESNext",
+    "target": "ES6",
+    "jsx": "react-jsx",
+    "noEmit": true
+  },
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"]
 }
