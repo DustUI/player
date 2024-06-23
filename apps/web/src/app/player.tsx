@@ -1,7 +1,7 @@
 "use client"
 import "@dust/player/styles.css";
 
-import { AudioTrack, MediaPlayer, TextTrack, TimeText, TimelineProgress, ToggleButton, ToggleFullscreen, Volume } from "@dust/player";
+import { AudioTrack, MediaPlayer, QualityTrack, TextTrack, TimeText, TimelineProgress, ToggleButton, ToggleFullscreen, Volume } from "@dust/player";
 
 export default function Player() {
     const options = {
@@ -29,6 +29,7 @@ export default function Player() {
                 <TextTrack />
                 <AudioTrack />
                 <ToggleFullscreen />
+                <QualityTrack />
             </div>
             <TimelineProgress className="h-2" />
             <TimeText className="px-0" />

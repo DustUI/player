@@ -16,7 +16,6 @@ export const useAudioTrack = () => {
   const [audioTrack, setAudioTrack] = useState<AudioTrackItem[]>([]);
 
   const player: any = videoPlayer.player;
-  console.log("🚀 ~ useAudioTrack ~ player:", player);
 
   const handleAudioTrack = (player: any) => {
     var tracks = player?.audioTracks();

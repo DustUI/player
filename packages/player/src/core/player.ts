@@ -132,22 +132,27 @@ class VideoPlayer {
   getQualityLevels() {
     const qualityLevels = this.player?.qualityLevels();
     if (qualityLevels) {
-      return Array.from(qualityLevels.levels_).map((level: any) => ({
-        id: level.id,
-        height: level.height,
-        width: level.width,
-        bitrate: level.bitrate,
-      }));
+      const labels = qualityLevels.levels_;
+      return Array.from(labels)
+        .map((level: any, i) => ({
+          id: level.id,
+          height: level.height,
+          width: level.width,
+          bitrate: level.bitrate,
+          frameRate: level.frameRate,
+          enabled: level.enabled,
+        }))
+        .sort((a, b) => b.height - a.height);
     }
     return [];
   }
 
   // Set quality level
-  setQualityLevel(index: number) {
+  setQualityLevel(id: string) {
     const qualityLevels = this.player?.qualityLevels();
-    if (qualityLevels && qualityLevels.levels_[index]) {
-      qualityLevels.levels_.forEach((level: any, i: number) => {
-        level.enabled = i === index;
+    if (qualityLevels && qualityLevels.length > 0) {
+      qualityLevels.levels_.forEach((level: any) => {
+        level.enabled = level.id === id;
       });
     }
   }
