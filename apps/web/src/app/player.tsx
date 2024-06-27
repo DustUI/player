@@ -25,6 +25,6 @@ export default function Player() {
     }
 
     return (
-        <STVPlayer options={options} onReady={handleOnReady} theme="overlay" />
+        <STVPlayer options={options} onReady={handleOnReady} />
     );
 }

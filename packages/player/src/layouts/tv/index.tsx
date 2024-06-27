@@ -1,6 +1,7 @@
 import { MouseEvent, useEffect } from 'react';
 import { MediaPlayerProps } from '../../components';
 import { STVControlOverlay } from './overlay';
+import { STVControlStandard } from './standard';
 
 interface PlayerProps extends MediaPlayerProps {
     theme?: "default" | "overlay" | "grid" | "mini" | "sidebar"
@@ -17,6 +18,7 @@ export function STVPlayer({ onButtonClick, theme = "default", ...rest }: PlayerP
 
     return (
         <>
+            {theme === 'default' && <STVControlStandard {...rest} />}
             {theme === 'overlay' && <STVControlOverlay {...rest} />}
         </>
     );

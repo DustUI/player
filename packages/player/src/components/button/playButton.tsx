@@ -1,5 +1,6 @@
 import { ElementType, useEffect, useState } from 'react';
 import { videoPlayer } from '../../core';
+import { ButtonBaseProps } from '../shared';
 import { Button, ButtonProps } from '../shared/Button';
 
 export const TogglePlay = <T extends ElementType = "button">(
@@ -10,6 +11,7 @@ export const TogglePlay = <T extends ElementType = "button">(
         icon = false,
         ...props
     }: ButtonProps<T>) => {
+    const theirProps = props as ButtonBaseProps<T>;
 
     const [isPlaying, setIsPlaying] = useState(false)
 
@@ -24,7 +26,7 @@ export const TogglePlay = <T extends ElementType = "button">(
         videoPlayer.togglePlayPause()
     }
 
-    return <Button {...{ color, size, pill, icon, props }} onClick={playToggle}>
+    return <Button icon={icon} color={color} size={size} pill={pill} onClick={playToggle} {...theirProps} >
         {!isPlaying ?
             <span className="vjs-icon-play" />
             :

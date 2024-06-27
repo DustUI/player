@@ -98,6 +98,7 @@ const ButtonComponent = forwardRef(
         }: ButtonProps<T>,
         ref: PolymorphicRef<T>,
     ) => {
+        console.log("🚀 ~ className:", icon)
         const theme: ButtonTheme = Theme;
 
         const theirProps = props as ButtonBaseProps<T>;
@@ -112,43 +113,40 @@ const ButtonComponent = forwardRef(
                     !gradientDuoTone && !gradientMonochrome && theme.color[color],
                     gradientDuoTone && !gradientMonochrome && theme.gradientDuoTone[gradientDuoTone],
                     !gradientDuoTone && gradientMonochrome && theme.gradient[gradientMonochrome],
-                    outline && (theme.outline.color[color] ?? theme.outline.color.default),
+                    // outline && (theme.outline.color[color] ?? theme.outline.color.default),
                     theme.pill[pill ? "on" : "off"],
                     fullSized && theme.fullSized,
+                    theme.outline[outline ? "on" : "off"],
+                    theme.outline.pill[outline && pill ? "on" : "off"],
+                    icon ? theme.icon[size] : theme.size[size],
+                    outline && !theme.outline.color[color] && theme.inner.outline,
+                    className,
 
                 )}
                 {...theirProps}
             >
-                <span
+                {/* <span
                     className={cn(
-                        theme.inner.base,
-                        theme.outline[outline ? "on" : "off"],
-                        theme.outline.pill[outline && pill ? "on" : "off"],
-                        icon ? theme.icon[size] : theme.size[size],
-                        outline && !theme.outline.color[color] && theme.inner.outline,
-                        isProcessing && theme.isProcessing,
-                        isProcessing && theme.inner.isProcessingPadding[size],
-                        className,
                     )}
-                >
-                    <>
-                        {isProcessing && (
-                            <span className={cn(theme.spinnerSlot, theme.spinnerLeftPosition[size])}>
-                                {processingSpinner ||
-                                    // <Spinner size={size} />
-                                    <>Spinner</>
-                                }
-                            </span>
-                        )}
-                        {typeof children !== "undefined" ? (
-                            children
-                        ) : (
-                            <span data-testid="Theme-button-label" className={cn(theme.label)}>
-                                {isProcessing ? processingLabel : label}
-                            </span>
-                        )}
-                    </>
-                </span>
+                > */}
+                <>
+                    {isProcessing && (
+                        <span className={cn(theme.spinnerSlot, theme.spinnerLeftPosition[size])}>
+                            {processingSpinner ||
+                                // <Spinner size={size} />
+                                <>Spinner</>
+                            }
+                        </span>
+                    )}
+                    {typeof children !== "undefined" ? (
+                        children
+                    ) : (
+                        <span data-testid="Theme-button-label" className={cn(theme.label)}>
+                            {isProcessing ? processingLabel : label}
+                        </span>
+                    )}
+                </>
+                {/* </span> */}
             </ButtonBase>
         );
     },
