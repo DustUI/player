@@ -1,20 +1,20 @@
-import { useEffect, useState } from "react";
-import { videoPlayer } from "../../core";
-import { buildTimeString } from "../../utils";
-import { Button, ButtonProps } from "../shared/Button";
+import { ElementType, useEffect, useState } from "react";
+import { Theme, videoPlayer } from "../../core";
+import { buildTimeString, cn } from "../../utils";
+import { ButtonProps, ButtonTheme } from "../shared/Button";
 
 
-interface TimeProps extends ButtonProps {
+type TimeProps<T extends ElementType = "div"> = ButtonProps<T> & {
     reverse?: boolean
 }
 
-export function TimeText(
+export const TimeText = <T extends ElementType = "div">(
     {
-        pill = true,
-        size = "xs",
         reverse = false,
+        className,
         ...props
-    }: TimeProps) {
+    }: TimeProps<T>) => {
+
     const [timelineInfo, setTimelineInfo] = useState({ currentTime: 0, duration: 0, percentage: 0 });
 
     useEffect(() => {
@@ -25,8 +25,15 @@ export function TimeText(
         videoPlayer?.player?.on("timeupdate", handleTimeUpdate);
     }, [videoPlayer]);
 
+    const theme: ButtonTheme = Theme;
+
     return (
-        timelineInfo.currentTime > 0 && <Button {...{ pill, size, ...props }}>
+        videoPlayer.player && <div className={cn(
+            theme.color.light,
+            className
+        )}
+            {...props}
+        >
             {
                 reverse ?
                     <>
@@ -43,6 +50,6 @@ export function TimeText(
                         <span>{buildTimeString(timelineInfo.duration, timelineInfo.duration > 3600)}</span>
                     </>
             }
-        </Button>
+        </div>
     );
 }

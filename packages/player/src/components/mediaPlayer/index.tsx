@@ -3,28 +3,59 @@ import "video.js/dist/video-js.css";
 import { videoPlayer } from '../../core';
 import { VideoJsPlayerOptions } from '../../types/player';
 
-export function MediaPlayer({ options }: { options: VideoJsPlayerOptions }) {
+export interface MediaPlayerProps {
+    options: VideoJsPlayerOptions,
+    onReady?: () => void
+    className?: string
+}
+
+export function MediaPlayer({ options, className, onReady }: MediaPlayerProps) {
 
     const playerRef = useRef<any>(null);
     const videoRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        if (videoRef.current) {
+
+        // Make sure Video.js player is only initialized once
+        if (!playerRef.current) {
             const videoElement = document.createElement("video-js");
 
             videoElement.classList.add('vjs-big-play-centered');
-            videoRef.current?.appendChild(videoElement);
+            videoElement.classList.add('w-full');
+            if (className) {
+                let classList: string[] = []
+                if (typeof className === "string") {
+                    classList = className.split(" ")
+                }
+                if (Array.isArray(className)) {
+                    classList = className
+                }
+                classList.forEach(item => {
+                    videoElement.classList.add(item)
+                })
+            }
+            if (videoRef.current) videoRef.current.appendChild(videoElement);
 
+            const player = playerRef.current = videoPlayer.init(videoElement, options, onReady);
 
-            playerRef.current = videoPlayer.init(videoElement, options, () => {
-                console.log('Player Ready')
-            });
+        } else {
+            const player = playerRef.current;
 
-            return () => {
-                videoPlayer?.dispose();
-            };
+            player.autoplay(options.autoplay);
+            player.src(options.sources);
         }
-    }, []);
+    }, [options, videoRef]);
+
+    useEffect(() => {
+        const player = playerRef.current;
+
+        return () => {
+            if (player && !player.isDisposed()) {
+                player.dispose();
+                playerRef.current = null;
+            }
+        };
+    }, [playerRef]);
 
     return (
         <div data-vjs-player>

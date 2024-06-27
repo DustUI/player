@@ -18,6 +18,7 @@ export interface ButtonTheme {
     outline: ThemeButtonOutlineTheme;
     pill: ThemeBoolean;
     size: ButtonSizes;
+    icon: ButtonSizes;
 }
 
 export interface ThemeButtonInnerTheme {
@@ -31,8 +32,7 @@ export interface ThemeButtonOutlineTheme extends ThemeBoolean {
     pill: ThemeBoolean;
 }
 
-export interface ButtonColors
-    extends Pick<ThemeColors, "dark" | "failure" | "gray" | "info" | "light" | "purple" | "success" | "warning"> {
+export interface ButtonColors extends Pick<ThemeColors, "dark" | "failure" | "gray" | "info" | "light" | "purple" | "success" | "warning"> {
     [key: string]: string;
 }
 
@@ -68,6 +68,7 @@ export type ButtonProps<T extends ElementType = "button"> = PolymorphicComponent
         outline?: boolean;
         pill?: boolean;
         size?: keyof ButtonSizes;
+        icon?: boolean
     }
 >;
 
@@ -92,11 +93,12 @@ const ButtonComponent = forwardRef(
             outline = false,
             pill = false,
             size = "md",
+            icon = false,
             ...props
         }: ButtonProps<T>,
         ref: PolymorphicRef<T>,
     ) => {
-        const theme = Theme
+        const theme: ButtonTheme = Theme;
 
         const theirProps = props as ButtonBaseProps<T>;
 
@@ -113,7 +115,7 @@ const ButtonComponent = forwardRef(
                     outline && (theme.outline.color[color] ?? theme.outline.color.default),
                     theme.pill[pill ? "on" : "off"],
                     fullSized && theme.fullSized,
-                    className,
+
                 )}
                 {...theirProps}
             >
@@ -122,10 +124,11 @@ const ButtonComponent = forwardRef(
                         theme.inner.base,
                         theme.outline[outline ? "on" : "off"],
                         theme.outline.pill[outline && pill ? "on" : "off"],
-                        theme.size[size],
+                        icon ? theme.icon[size] : theme.size[size],
                         outline && !theme.outline.color[color] && theme.inner.outline,
                         isProcessing && theme.isProcessing,
                         isProcessing && theme.inner.isProcessingPadding[size],
+                        className,
                     )}
                 >
                     <>

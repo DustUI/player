@@ -1,5 +1,5 @@
 export const Theme = {
-  base: "group relative flex items-stretch justify-center text-center font-medium transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow] focus:z-10 focus:outline-none",
+  base: "group relative flex text-center font-medium transition-[color,background-color,border-color,text-decoration-color,fill,stroke,box-shadow] focus:z-10 focus:outline-none",
   fullSized: "w-full",
   color: {
     dark: "border border-transparent bg-gray-800 text-white focus:ring-4 focus:ring-gray-300 enabled:hover:bg-gray-900 dark:border-gray-700 dark:bg-gray-800 dark:focus:ring-gray-800 dark:enabled:hover:bg-gray-700",
@@ -69,7 +69,7 @@ export const Theme = {
       "bg-gradient-to-r from-teal-200 to-lime-200 text-gray-900 focus:ring-4 focus:ring-lime-200 enabled:hover:bg-gradient-to-l enabled:hover:from-teal-200 enabled:hover:to-lime-200 enabled:hover:text-gray-900 dark:focus:ring-teal-700",
   },
   inner: {
-    base: "flex items-stretch transition-all duration-200",
+    base: "flex transition-all duration-200",
     position: {
       none: "",
       start: "rounded-r-none",
@@ -110,6 +110,13 @@ export const Theme = {
     md: "px-4 py-2 text-sm",
     lg: "px-5 py-2.5 text-base",
     xl: "px-6 py-3 text-base",
+  },
+  icon: {
+    xs: "w-6 h-6 text-base flex items-center justify-center",
+    sm: "w-8 h-8 text-lg flex items-center justify-center",
+    md: "w-10 h-10 text-lg flex items-center justify-center",
+    lg: "w-12 h-12 text-2xl flex items-center justify-center",
+    xl: "w-16 h-16 text-3xl flex items-center justify-center",
   },
 };
 

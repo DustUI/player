@@ -1,11 +1,13 @@
+import "@videojs/http-streaming";
 import videojs from "video.js";
+import "videojs-contrib-eme";
 import {
   VideoJsPlayer,
   VideoJsPlayerEvent,
   VideoJsPlayerOptions,
 } from "../types/player";
 
-class VideoPlayer {
+export class VideoPlayer {
   player: VideoJsPlayer | any = null;
   private onTimelineUpdate:
     | ((info: {
@@ -16,17 +18,21 @@ class VideoPlayer {
     | null = null;
 
   init(
-    elementId: HTMLElement,
+    elementId: HTMLElement | Element,
     options?: VideoJsPlayerOptions,
     callback?: () => void
   ) {
-    this.player = videojs(elementId, options, callback);
-    this.player?.ready(() => {
-      this.keyDownHandler();
-      this.initializeEvents();
-      this.setIcons();
-    });
-    return this.player;
+    if (elementId) {
+      const player: any = videojs(elementId, options, callback);
+      this.player = player;
+      player?.ready(() => {
+        if (player?.eme()) player?.eme();
+        this.keyDownHandler();
+        this.initializeEvents();
+        this.setIcons();
+      });
+      return player;
+    }
   }
 
   // Initialize event listeners
