@@ -13,7 +13,7 @@ export default function Player() {
         sources: [
             {
                 src: "https://d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8",
-                // src: 'https://bitmovin-a.akamaihd.net/content/playhouse-vr/mpds/105560.mpd',
+                // src: 'https://livesim.dashif.org/livesim/mup_30/testpic_2s/Manifest.mpd',
                 // type: "application/x-mpegURL"
             },
         ],

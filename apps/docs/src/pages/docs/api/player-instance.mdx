@@ -1,0 +1,415 @@
+import { VideoPlayer, VideoPlayerInstance } from "@dust/player";
+
+# VideoPlayer Instance
+
+The `VideoPlayer` class provides an interface to control a video.js player with features like play, pause, mute, volume control, and more.
+
+## Properties
+
+- `player: VideoJsPlayer | any`: The video.js player instance.
+- `isLoading: boolean`: Indicates if the player is loading.
+- `isReady: boolean`: Indicates if the player is ready.
+
+## Methods
+
+### init(elementId, options, callback)
+
+Initializes the video player with a specified HTML element, options, and a callback function.
+
+- **Parameters:**
+  - `elementId: HTMLElement | Element`: The HTML element or ID where the player will be initialized.
+  - `options?: VideoJsPlayerOptions`: Optional player configuration options.
+  - `callback?: () => void`: Optional callback function after player initialization.
+
+**Example:**
+
+```javascript
+const player = new VideoPlayer();
+player.init(
+  document.getElementById("videoElement"),
+  {
+    controls: true,
+    autoplay: false,
+  },
+  () => {
+    console.log("Player is initialized");
+  }
+);
+```
+
+### play()
+
+Starts video playback.
+
+**Example:**
+
+```javascript
+player.play();
+```
+
+### pause()
+
+Pauses video playback.
+
+**Example:**
+
+```javascript
+player.pause();
+```
+
+### mute()
+
+Mutes the video audio.
+
+**Example:**
+
+```javascript
+player.mute();
+```
+
+### unmute()
+
+Unmutes the video audio.
+
+**Example:**
+
+```javascript
+player.unmute();
+```
+
+### seek(seconds)
+
+Seeks the video by a specified number of seconds.
+
+- **Parameters:**
+  - `seconds: number`: The number of seconds to seek forward or backward.
+
+**Example:**
+
+```javascript
+player.seek(10);
+player.seek(-5);
+```
+
+### enterFullscreen()
+
+Enters fullscreen mode.
+
+**Example:**
+
+```javascript
+player.enterFullscreen();
+```
+
+### exitFullscreen()
+
+Exits fullscreen mode.
+
+**Example:**
+
+```javascript
+player.exitFullscreen();
+```
+
+### isLive(): boolean
+
+Checks if the current stream is a live broadcast.
+
+- **Returns:** `boolean` - `true` if the stream is live, otherwise `false`.
+
+**Example:**
+
+```javascript
+player.isLive();
+```
+
+### disableTextTrack()
+
+Disables the currently active text track (subtitles).
+
+**Example:**
+
+```javascript
+player.disableTextTrack();
+```
+
+### enableTextTrack()
+
+Enables the first available text track (subtitles).
+
+**Example:**
+
+```javascript
+player.enableTextTrack();
+```
+
+### changeTextTrack(id)
+
+Changes the text track by its index.
+
+- **Parameters:**
+  - `id: number`: The index of the text track to enable.
+
+**Example:**
+
+```javascript
+player.changeTextTrack(1); // Enables the second text track
+```
+
+### toggleMute()
+
+Toggles the mute state of the player.
+
+**Example:**
+
+```javascript
+player.toggleMute();
+```
+
+### togglePlayPause()
+
+Toggles between play and pause states.
+
+**Example:**
+
+```javascript
+player.togglePlayPause();
+```
+
+### toggleFullscreen()
+
+Toggles the fullscreen mode of the player.
+
+**Example:**
+
+```javascript
+player.toggleFullscreen();
+```
+
+### toggleCaptions()
+
+Toggles the display of captions (subtitles) on or off.
+
+**Example:**
+
+```javascript
+player.toggleCaptions();
+```
+
+### getCurrentTime(): number
+
+Gets the current playback time of the video.
+
+- **Returns:** `number` - The current time in seconds.
+
+**Example:**
+
+```javascript
+console.log("Current time:", player.getCurrentTime());
+```
+
+### setCurrentTime(seconds)
+
+Sets the current playback time to a specific second.
+
+- **Parameters:**
+  - `seconds: number`: The time in seconds to set the video to.
+
+**Example:**
+
+```javascript
+player.setCurrentTime(120); // Sets the video to 2 minutes
+```
+
+### getDuration(): number
+
+Gets the total duration of the video.
+
+- **Returns:** `number` - The total duration in seconds.
+
+**Example:**
+
+```javascript
+console.log("Duration:", player.getDuration());
+```
+
+### getVolume(): number
+
+Gets the current volume level of the player.
+
+- **Returns:** `number` - The volume level from 0 to 1.
+
+**Example:**
+
+```javascript
+console.log("Volume:", player.getVolume());
+```
+
+### setVolume(volume)
+
+Sets the volume level of the player.
+
+- **Parameters:**
+  - `volume: number`: The volume level from 0 to 1.
+
+**Example:**
+
+```javascript
+player.setVolume(0.5); // Sets volume to 50%
+```
+
+### changeVolume(amount)
+
+Changes the volume by a specified amount.
+
+- **Parameters:**
+  - `amount: number`: The amount to change the volume.
+
+**Example:**
+
+```javascript
+player.changeVolume(0.1); // Increases volume by 10%
+```
+
+### getQualityTracks()
+
+Gets the available video quality levels.
+
+- **Returns:** `Array` - An array of quality level objects.
+
+**Example:**
+
+```javascript
+console.log("Quality levels:", player.getQualityTracks());
+```
+
+### setQualityTrack(id)
+
+Sets the video quality level by its ID.
+
+- **Parameters:**
+  - `id: string`: The ID of the quality level to enable.
+
+**Example:**
+
+```javascript
+player.setQualityTrack("720p");
+```
+
+### getAudioTracks()
+
+Gets the available audio tracks.
+
+- **Returns:** `Array` - An array of audio track objects.
+
+**Example:**
+
+```javascript
+console.log("Audio tracks:", player.getAudioTracks());
+```
+
+### setAudioTrack(index)
+
+Sets the audio track by its index.
+
+- **Parameters:**
+  - `index: number`: The index of the audio track to enable.
+
+**Example:**
+
+```javascript
+player.setAudioTrack(0); // Enables the first audio track
+```
+
+### getProgress(): number
+
+Gets the current playback progress as a percentage.
+
+- **Returns:** `number` - The playback progress percentage.
+
+**Example:**
+
+```javascript
+console.log("Progress:", player.getProgress());
+```
+
+### getTimeline()
+
+Gets timeline information including current time, duration, and progress percentage.
+
+- **Returns:** `Object` - An object containing `currentTime`, `duration`, and `percentage`.
+
+**Example:**
+
+```javascript
+console.log("Timeline info:", player.getTimeline());
+```
+
+### onTimelineCallback(callback)
+
+Sets a callback function for timeline updates.
+
+- **Parameters:**
+  - `callback: (info: { currentTime: number, duration: number, percentage: number }) => void`: The callback function.
+
+**Example:**
+
+```javascript
+player.onTimelineCallback((info) => {
+  console.log("Timeline update:", info);
+});
+```
+
+### on(event, callback)
+
+Adds an event listener to the player for a specific event.
+
+- **Parameters:**
+  - `event: VideoJsPlayerEvent`: The event to listen for.
+  - `callback: () => void`: The callback function to call when the event is triggered.
+
+**Example:**
+
+```javascript
+player.on("play", () => {
+  console.log("Video is playing");
+});
+```
+
+### off(event, callback)
+
+Removes an event listener from the player.
+
+- **Parameters:**
+  - `event: VideoJsPlayerEvent`: The event to stop listening for.
+  - `callback: () => void`: The callback function to remove.
+
+**Example:**
+
+```javascript
+player.off("play", callbackFunction);
+```
+
+### dispose()
+
+Disposes of the player and cleans up resources.
+
+**Example:**
+
+```javascript
+player.dispose();
+```
+
+## Usage
+
+```javascript
+import { videoPlayer, VideoPlayerInstance } from './VideoPlayer';
+
+const playerInstance: VideoPlayerInstance = videoPlayer;
+playerInstance.init(document.getElementById('videoElement'), {
+  controls: true,
+  autoplay: false,
+}, () => {
+  console.log('Player is ready');
+});
+```

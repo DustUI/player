@@ -1,0 +1,74 @@
+# Quality Track
+
+This section covers the functions related to video quality tracks in the `VideoPlayer` class.
+
+## Methods
+
+### getQualityTracks()
+
+Retrieves the available video quality levels.
+
+- **Returns:** `Array` - An array of quality level objects containing the following properties:
+  - `id: string`: Unique identifier for the quality level.
+  - `height: number`: Height of the video in pixels.
+  - `width: number`: Width of the video in pixels.
+  - `bitrate: number`: Bitrate of the video stream.
+  - `frameRate: number`: Frame rate of the video.
+  - `enabled: boolean`: Indicates if this quality level is currently enabled.
+
+**Example:**
+
+```javascript
+const qualityLevels = player.getQualityTracks();
+console.log("Available Quality Levels:", qualityLevels);
+
+Available Quality Levels:
+[
+    {
+        "id": "0-placeholder-uri-0",
+        "height": 360,
+        "width": 640,
+        "bitrate": 300000,
+        "frameRate": 30,
+        "enabled": true
+    }
+]
+```
+
+### setQualityTrack(id)
+
+Sets the video quality level based on the specified ID.
+
+- **Parameters:**
+  - `id: string`: The ID of the desired quality level to enable. This should match one of the IDs from the `getQualityTracks()` output.
+
+**Example:**
+
+```javascript
+player.setQualityTrack("0-placeholder-uri-0");
+```
+
+## Usage
+
+To manipulate video quality tracks, you can use these functions to get available quality options and set your preferred quality. Here's a brief example:
+
+```javascript
+import { videoPlayer, VideoPlayerInstance } from './VideoPlayer';
+
+const playerInstance: VideoPlayerInstance = videoPlayer;
+playerInstance.init(document.getElementById('videoElement'), {
+  controls: true,
+  autoplay: false,
+}, () => {
+  console.log('Player is ready');
+
+  // Get and log available quality levels
+  const qualityLevels = playerInstance.getQualityTracks();
+  console.log('Available Quality Levels:', qualityLevels);
+
+  // Set a specific quality level by ID
+  playerInstance.setQualityTrack("0-placeholder-uri-0");
+});
+```
+
+In this example, the player is initialized, the available quality levels are retrieved and logged, and a specific quality level is set based on the available options.

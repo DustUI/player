@@ -12,42 +12,29 @@ interface AudioTrackItem {
 }
 
 export const useAudioTrack = () => {
-  const [isAvailable, setAvailableAudioTrack] = useState(false);
-  const [audioTrack, setAudioTrack] = useState<AudioTrackItem[]>([]);
+  const [isAvailable, setAvailable] = useState(false);
+  const [tracks, setAudioTrack] = useState<AudioTrackItem[]>([]);
 
   const player: any = videoPlayer.player;
 
-  const handleAudioTrack = (player: any) => {
-    var tracks = player?.audioTracks();
+  const handleAudioTrack = () => {
+    var tracks = videoPlayer?.getAudioTracks();
     if (tracks && tracks.length > 0) {
-      let trackList = [];
-      for (var i = 0; i < tracks.length; i++) {
-        const track: AudioTrackItem = tracks[i];
-        const tl = {
-          index: i,
-          id: track.id,
-          label: track.label,
-          language: track.language,
-          enabled: track.enabled,
-          kind: track.kind,
-        };
-        trackList.push(tl);
-      }
-      setAudioTrack(trackList);
-      setAvailableAudioTrack(true);
+      setAudioTrack(tracks);
+      setAvailable(true);
     }
   };
 
   useEffect(() => {
     const handleTimeUpdate = () => {
-      handleAudioTrack(videoPlayer?.player);
+      handleAudioTrack();
     };
     videoPlayer?.on("loadedmetadata", handleTimeUpdate);
   }, [videoPlayer]);
 
   useEffect(() => {
     if (!player) return;
-    handleAudioTrack(player);
+    handleAudioTrack();
   }, [player]);
 
   const changeAudioTrack = (index: number) => {
@@ -63,7 +50,7 @@ export const useAudioTrack = () => {
 
   return {
     isAvailable,
-    audioTrack,
+    tracks,
     changeAudioTrack,
   };
 };

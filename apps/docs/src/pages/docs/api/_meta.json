@@ -1,0 +1,14 @@
+{
+  "-- Core Functions": {
+    "type": "separator",
+    "title": "Core Functions"
+  },
+  "player-instance": "Player Instance",
+  "audio-tracks": "Audio Tracks",
+  "text-tracks": "Text Tracks",
+  "video-quality": "Video Quality",
+  "-- Hooks": {
+    "type": "separator",
+    "title": "Hooks"
+  }
+}

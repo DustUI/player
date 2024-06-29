@@ -1,0 +1,72 @@
+# Audio Track
+
+This section covers the functions related to audio tracks in the `VideoPlayer` class.
+
+## Methods
+
+### getAudioTracks()
+
+Retrieves the available audio tracks.
+
+- **Returns:** `Array` - An array of audio track objects containing the following properties:
+  - `id: string`: Unique identifier for the audio track.
+  - `label: string`: Label describing the audio track.
+  - `language: string`: Language code of the audio track.
+  - `enabled: boolean`: Indicates if this audio track is currently enabled.
+
+**Example:**
+
+```javascript
+const audioTracks = player.getAudioTracks();
+console.log("Available Audio Tracks:", audioTracks);
+
+Available Audio Tracks:
+[
+    {
+        "index": 0,
+        "id": "en (main)",
+        "label": "en (main)",
+        "language": "en",
+        "enabled": true,
+        "kind": "main"
+    }
+]
+```
+
+### setAudioTrack(index)
+
+Enables a specific audio track by its index.
+
+- **Parameters:**
+  - `index: number`: The index of the audio track to enable. This should be within the range of the available audio tracks from the `getAudioTracks()` output.
+
+**Example:**
+
+```javascript
+player.setAudioTrack(0); // Enables the first audio track
+```
+
+## Usage
+
+To manipulate audio tracks, you can use these functions to get available audio options and set your preferred track. Here's a brief example:
+
+```javascript
+import { videoPlayer, VideoPlayerInstance } from './VideoPlayer';
+
+const playerInstance: VideoPlayerInstance = videoPlayer;
+playerInstance.init(document.getElementById('videoElement'), {
+  controls: true,
+  autoplay: false,
+}, () => {
+  console.log('Player is ready');
+
+  // Get and log available audio tracks
+  const audioTracks = playerInstance.getAudioTracks();
+  console.log('Available Audio Tracks:', audioTracks);
+
+  // Set a specific audio track by index
+  playerInstance.setAudioTrack(1); // Adjust index to match available tracks
+});
+```
+
+In this example, the player is initialized, the available audio tracks are retrieved and logged, and a specific audio track is set based on the available options.

@@ -21,7 +21,7 @@ export const Subtitle = <T extends ElementType = "button">(
     }: SubtitleProps<T>) => {
 
     const theirProps = props as ButtonBaseProps<T>;
-    const { availableTextTrack, disableTextTrack, enableTextTrack, textTracks, isDisable } = useTextTrack()
+    const { isAvailable, disableTextTrack, enableTextTrack, tracks, isDisable } = useTextTrack()
 
     const [show, setShow] = useState(stateShow)
 
@@ -40,12 +40,12 @@ export const Subtitle = <T extends ElementType = "button">(
     }
 
     const renderActiveLabel = () => {
-        const activeLabel = textTracks.length > 0 ? textTracks.find(track => track.mode === "showing") : undefined
+        const activeLabel = tracks.length > 0 ? tracks.find(track => track.mode === "showing") : undefined
         return activeLabel?.label || "Off"
     }
 
     return (
-        availableTextTrack && <>
+        isAvailable && <>
             {!show && <Button onClick={onClickHandler} color={color} size={size} className="flex justify-start items-center space-x-3" {...theirProps} >
                 <div className='flex items-start justify-center text-3xl'>
                     <span className="vjs-icon-captions" />
@@ -63,7 +63,7 @@ export const Subtitle = <T extends ElementType = "button">(
                         </Button>
                     </li>
                     {
-                        textTracks.map((track, index) => {
+                        tracks.map((track, index) => {
                             return <li key={index} className='flex flex-col'>
                                 <Button color="info" className='w-full' outline={track.mode === "showing"} onClick={() => enableTextTrack(track.id)}>
                                     {track.label}

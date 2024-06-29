@@ -12,12 +12,14 @@
   "dependencies": {
     "@dust/player": "workspace:*",
     "next": "^14.2.3",
+    "nextra": "^2.13.4",
+    "nextra-theme-docs": "^2.13.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@next/eslint-plugin-next": "^14.2.3",
     "@dust/tailwind-config": "workspace:*",
+    "@next/eslint-plugin-next": "^14.2.3",
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.61",
     "@types/react-dom": "^18.2.19",

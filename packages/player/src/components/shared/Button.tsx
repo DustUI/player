@@ -98,7 +98,6 @@ const ButtonComponent = forwardRef(
         }: ButtonProps<T>,
         ref: PolymorphicRef<T>,
     ) => {
-        console.log("🚀 ~ className:", icon)
         const theme: ButtonTheme = Theme;
 
         const theirProps = props as ButtonBaseProps<T>;
@@ -113,22 +112,17 @@ const ButtonComponent = forwardRef(
                     !gradientDuoTone && !gradientMonochrome && theme.color[color],
                     gradientDuoTone && !gradientMonochrome && theme.gradientDuoTone[gradientDuoTone],
                     !gradientDuoTone && gradientMonochrome && theme.gradient[gradientMonochrome],
-                    // outline && (theme.outline.color[color] ?? theme.outline.color.default),
-                    theme.pill[pill ? "on" : "off"],
-                    fullSized && theme.fullSized,
-                    theme.outline[outline ? "on" : "off"],
-                    theme.outline.pill[outline && pill ? "on" : "off"],
-                    icon ? theme.icon[size] : theme.size[size],
                     outline && !theme.outline.color[color] && theme.inner.outline,
+                    outline && (theme.outline.color[color] ?? theme.outline.color.default),
+                    fullSized && theme.fullSized,
+                    theme.pill[pill ? "on" : "off"],
+                    theme.outline[outline ? "on" : "off"],
+                    icon ? theme.icon[size] : theme.size[size],
                     className,
 
                 )}
                 {...theirProps}
             >
-                {/* <span
-                    className={cn(
-                    )}
-                > */}
                 <>
                     {isProcessing && (
                         <span className={cn(theme.spinnerSlot, theme.spinnerLeftPosition[size])}>
@@ -146,7 +140,6 @@ const ButtonComponent = forwardRef(
                         </span>
                     )}
                 </>
-                {/* </span> */}
             </ButtonBase>
         );
     },

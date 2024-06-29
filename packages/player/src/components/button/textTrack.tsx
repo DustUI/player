@@ -10,9 +10,9 @@ export const TextTrack = <T extends ElementType = "button">(
         ...props
     }: ButtonProps<T>) => {
 
-    const { availableTextTrack, disableTextTrack, enableTextTrack, textTracks, isDisable } = useTextTrack()
+    const { isAvailable, disableTextTrack, enableTextTrack, tracks, isDisable } = useTextTrack()
 
-    return availableTextTrack && <div className='relative group'>
+    return isAvailable && <div className='relative group'>
         <Button {...{ color, size, pill, props }} >
             <span className="vjs-icon-captions" />
         </Button>
@@ -23,7 +23,7 @@ export const TextTrack = <T extends ElementType = "button">(
                 </Button>
             </li>
             {
-                textTracks.map((textTrack, index) => {
+                tracks.map((textTrack, index) => {
                     return <li key={index}>
                         <Button color="info" className='w-full rounded-none' outline={textTrack.mode === "showing"} onClick={() => enableTextTrack(textTrack.id)}>
                             {textTrack.label}

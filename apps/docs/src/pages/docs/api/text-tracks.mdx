@@ -1,0 +1,117 @@
+# Text Tracks
+
+This section covers the functions related to text tracks in the `VideoPlayer` class, including subtitles and captions.
+
+## Methods
+
+### getTextTrack()
+
+Retrieves the available text tracks.
+
+- **Returns:** `Array` - An array of text track objects with the following properties:
+  - `index: number`: The index of the text track.
+  - `id: string`: Unique identifier for the text track.
+  - `label: string`: Label describing the text track.
+  - `language: string`: Language code of the text track.
+  - `mode: string`: The mode of the text track (e.g., "showing", "disabled").
+  - `default: boolean`: Indicates if this text track is the default.
+  - `kind: string`: The kind of text track (e.g., "subtitles", "captions").
+
+**Example:**
+
+```javascript
+const textTracks = player.getTextTrack();
+console.log("Available Text Tracks:", textTracks);
+
+[
+  {
+    index: 1,
+    id: "English",
+    label: "English",
+    language: "en",
+    mode: "showing",
+    default: true,
+    kind: "subtitles",
+  },
+  {
+    index: 2,
+    id: "Swedish",
+    label: "Swedish",
+    language: "sv",
+    mode: "disabled",
+    default: false,
+    kind: "subtitles",
+  },
+];
+```
+
+### disableTextTrack()
+
+Disables the currently active text track.
+
+**Example:**
+
+```javascript
+player.disableTextTrack();
+```
+
+### enableTextTrack()
+
+Enables the first available text track that is not hidden.
+
+**Example:**
+
+```javascript
+player.enableTextTrack();
+```
+
+### changeTextTrack(id)
+
+Enables a specific text track by its index.
+
+- **Parameters:**
+  - `id: number`: The index of the text track to enable.
+
+**Example:**
+
+```javascript
+player.changeTextTrack(1); // Enables the second text track
+```
+
+### toggleCaptions()
+
+Toggles the display of captions or subtitles on or off.
+
+**Example:**
+
+```javascript
+player.toggleCaptions();
+```
+
+## Usage
+
+To manipulate text tracks such as subtitles or captions, you can use these functions to retrieve available tracks, enable or disable them, and toggle their visibility. Here's a brief example:
+
+```javascript
+import { videoPlayer, VideoPlayerInstance } from './VideoPlayer';
+
+const playerInstance: VideoPlayerInstance = videoPlayer;
+playerInstance.init(document.getElementById('videoElement'), {
+  controls: true,
+  autoplay: false,
+}, () => {
+  console.log('Player is ready');
+
+  // Get and log available text tracks
+  const textTracks = playerInstance.getTextTrack();
+  console.log('Available Text Tracks:', textTracks);
+
+  // Enable a specific text track by index
+  playerInstance.changeTextTrack(0); // Adjust index to match available tracks
+
+  // Toggle captions
+  playerInstance.toggleCaptions();
+});
+```
+
+In this example, the player is initialized, the available text tracks are retrieved and logged, a specific text track is enabled based on the available options, and captions are toggled.

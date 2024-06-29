@@ -21,7 +21,7 @@ export const Audio = <T extends ElementType = "button">(
     }: AudioProps<T>) => {
 
     const theirProps = props as ButtonBaseProps<T>;
-    const { audioTrack, isAvailable, changeAudioTrack } = useAudioTrack()
+    const { tracks, isAvailable, changeAudioTrack } = useAudioTrack()
 
     const [show, setShow] = useState(stateShow)
 
@@ -40,7 +40,7 @@ export const Audio = <T extends ElementType = "button">(
     }
 
     const renderActiveLabel = () => {
-        const activeLabel = audioTrack.length > 0 ? audioTrack.find(track => track.enabled === true) : undefined
+        const activeLabel = tracks.length > 0 ? tracks.find(track => track.enabled === true) : undefined
         return activeLabel?.label || ""
     }
 
@@ -58,7 +58,7 @@ export const Audio = <T extends ElementType = "button">(
             {
                 show && <ul className='w-full flex flex-col space-y-1'>
                     {
-                        audioTrack.map((track, index) => {
+                        tracks.map((track, index) => {
                             return <li key={index} className='flex flex-col'>
                                 <Button color="info" className='w-full' outline={track.enabled} onClick={() => changeAudioTrack(index)}>
                                     {track.label}

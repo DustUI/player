@@ -19,7 +19,7 @@ export const TimeText = <T extends ElementType = "div">(
 
     useEffect(() => {
         const handleTimeUpdate = () => {
-            const info = videoPlayer.getTimelineInfo();
+            const info = videoPlayer.getTimeline();
             setTimelineInfo(info);
         }
         videoPlayer?.player?.on("timeupdate", handleTimeUpdate);
@@ -35,20 +35,26 @@ export const TimeText = <T extends ElementType = "div">(
             {...props}
         >
             {
-                reverse ?
-                    <>
-                        <span>
-                            -{buildTimeString(timelineInfo.duration - timelineInfo.currentTime, timelineInfo.duration > 3600)}
-                        </span>
-                    </>
+                !videoPlayer.isLive() ?
+                    reverse ?
+                        <>
+                            <span>
+                                -{buildTimeString(timelineInfo.duration - timelineInfo.currentTime, timelineInfo.duration > 3600)}
+                            </span>
+                        </>
+                        :
+                        <>
+                            <span>
+                                {buildTimeString(timelineInfo.currentTime, timelineInfo.duration > 3600)}
+                            </span>
+                            <span>/</span>
+                            <span>{buildTimeString(timelineInfo.duration, timelineInfo.duration > 3600)}</span>
+                        </>
                     :
-                    <>
-                        <span>
-                            {buildTimeString(timelineInfo.currentTime, timelineInfo.duration > 3600)}
-                        </span>
-                        <span>/</span>
-                        <span>{buildTimeString(timelineInfo.duration, timelineInfo.duration > 3600)}</span>
-                    </>
+                    <div className="flex items-center justify-center">
+                        <span className="vjs-icon-circle text-red-400"></span>
+                        <span>Live</span>
+                    </div>
             }
         </div>
     );

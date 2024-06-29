@@ -1,4 +1,4 @@
-import { VideoPlayerType, videoPlayer } from "./player";
+import { VideoPlayerInstance, videoPlayer } from "./player";
 
 export class QualityLevel {
   //   protected _videoPlayer: VideoPlayer;
@@ -6,7 +6,7 @@ export class QualityLevel {
   _qualityLevels: any;
   _qualitySelected = "";
 
-  constructor(private videoPlayer: VideoPlayerType) {
+  constructor(private videoPlayer: VideoPlayerInstance) {
     this.initEvents();
   }
 

@@ -13,46 +13,30 @@ interface TextTrackItem {
 }
 
 export const useTextTrack = () => {
-  const [availableTextTrack, setAvailableTextTrack] = useState(false);
+  const [isAvailable, setAvailable] = useState(false);
   const [isDisable, setIsDisable] = useState(false);
-  const [textTracks, setTextTracks] = useState<TextTrackItem[]>([]);
+  const [tracks, setTextTracks] = useState<TextTrackItem[]>([]);
 
   const player: any = videoPlayer.player;
 
-  const handleTextTrack = (player: any) => {
-    var tracks = player?.textTracks();
+  const handleTextTrack = () => {
+    var tracks = videoPlayer?.getTextTrack();
     if (tracks && tracks.length > 0) {
-      let trackList = [];
-      for (var i = 0; i < tracks.length; i++) {
-        const track: TextTrackItem = tracks[i];
-        if (track.mode !== "hidden" && track.kind !== "metadata") {
-          const tl = {
-            index: i,
-            id: track.id,
-            label: track.label,
-            language: track.language,
-            mode: track.mode,
-            default: track.default,
-            kind: track.kind,
-          };
-          trackList.push(tl);
-        }
-      }
-      setTextTracks(trackList);
-      setAvailableTextTrack(true);
+      setTextTracks(tracks);
+      setAvailable(true);
     }
   };
 
   useEffect(() => {
     const handleTimeUpdate = () => {
-      handleTextTrack(videoPlayer?.player);
+      handleTextTrack();
     };
     videoPlayer?.on("texttrackchange", handleTimeUpdate);
   }, [videoPlayer]);
 
   useEffect(() => {
     if (!player) return;
-    handleTextTrack(player);
+    handleTextTrack();
   }, [player]);
 
   const disableTextTrack = () => {
@@ -86,8 +70,8 @@ export const useTextTrack = () => {
   };
 
   return {
-    availableTextTrack,
-    textTracks,
+    isAvailable,
+    tracks,
     disableTextTrack,
     enableTextTrack,
     isDisable,

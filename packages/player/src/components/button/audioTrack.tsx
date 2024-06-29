@@ -10,7 +10,7 @@ export const AudioTrack = <T extends ElementType = "button">(
         ...props
     }: ButtonProps<T>) => {
 
-    const { audioTrack, isAvailable, changeAudioTrack } = useAudioTrack()
+    const { tracks, isAvailable, changeAudioTrack } = useAudioTrack()
 
     return isAvailable && <div className='relative group'>
         <Button {...{ color, size, pill, props }} >
@@ -18,7 +18,7 @@ export const AudioTrack = <T extends ElementType = "button">(
         </Button>
         <ul className='absolute w-40 flex flex-col bottom-full left-0 invisible opacity-0 group-hover:visible group-hover:opacity-100'>
             {
-                audioTrack.map((textTrack, index) => {
+                tracks.map((textTrack, index) => {
                     return <li key={index}>
                         <Button color="info" className='w-full rounded-none' outline={textTrack.enabled} onClick={() => changeAudioTrack(index)}>
                             {textTrack.label}

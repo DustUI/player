@@ -12,7 +12,7 @@ interface QualityLevel {
 
 export function useQualityTrack() {
   const [tracks, setTracks] = useState<QualityLevel[]>(
-    videoPlayer.getQualityLevels() || []
+    videoPlayer.getQualityTracks() || []
   );
   const [selectedQuality, setSelectedQuality] = useState<string | null>(null);
   const [isAuto, setIsAuto] = useState(true);
@@ -20,7 +20,7 @@ export function useQualityTrack() {
 
   useEffect(() => {
     const updateTracks = () => {
-      const qualityLevels = videoPlayer.getQualityLevels();
+      const qualityLevels = videoPlayer.getQualityTracks();
       if (qualityLevels.length > 0) {
         setTracks(qualityLevels);
         const autoTrack = qualityLevels.find((t) => t.enabled);
@@ -31,7 +31,6 @@ export function useQualityTrack() {
       }
     };
 
-    // Listen for metadata and update tracks
     videoPlayer?.on("loadedmetadata", updateTracks);
 
     return () => {
@@ -63,7 +62,7 @@ export function useQualityTrack() {
     if (!player) return;
     setIsAuto(false);
     setSelectedQuality(id);
-    videoPlayer.setQualityLevel(id);
+    videoPlayer.setQualityTrack(id);
   };
 
   const setAutoQuality = () => {
