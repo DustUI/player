@@ -24,7 +24,8 @@ export default function Player() {
         setReady(true)
     }
 
-    return (
+    return (<div className="-0">
         <STVPlayer options={options} onReady={handleOnReady} />
+    </div>
     );
 }

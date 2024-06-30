@@ -1,7 +1,9 @@
+import { Logo } from "@/components/Logo";
+
 export default {
-  logo: <span>My Nextra Documentation</span>,
+  logo: <Logo />,
   project: {
-    link: "https://github.com/shuding/nextra",
+    link: "https://github.com/DustUI/player",
   },
   // ... other theme options
 };

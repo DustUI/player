@@ -1,0 +1,312 @@
+---
+title: "Button"
+description: "The `Button` component provides a customizable button interface with support for different styles and configurations."
+---
+
+To create comprehensive documentation for the `Button` component, which includes various configurations such as colors, outlines, pill style, and sizes, follow the structured approach below. Each section provides an example usage and explanation of the respective feature.
+
+### Button
+
+The `Button` component provides a customizable button interface with support for different styles and configurations.
+
+#### Props
+
+The `Button` component accepts props defined by `ButtonProps<T>`, extended with additional configurations:
+
+| Name                 | Type                                | Default        | Description                                                                                                                                                                                                              |
+| -------------------- | ----------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `href`               | `string`                            |                | URL for anchor tag behavior (if rendered as a link).                                                                                                                                                                     |
+| `color`              | `keyof ButtonColors`                | `"light"`      | Color variant of the button (`dark`, `failure`, `gray`, `info`, `light`, `purple`, `success`, `warning`, `blue`, `cyan`, `dark`, `gray`, `green`, `indigo`, `light`, `lime`, `pink`, `purple`, `red`, `teal`, `yellow`). |
+| `fullSized`          | `boolean`                           | `false`        | Whether the button should span full width.                                                                                                                                                                               |
+| `gradientDuoTone`    | `keyof ButtonGradientDuoToneColors` |                | Dual-tone gradient color variant for the button.                                                                                                                                                                         |
+| `gradientMonochrome` | `keyof ButtonGradientColors`        |                | Monochrome gradient color variant for the button.                                                                                                                                                                        |
+| `target`             | `string`                            |                | Target attribute for anchor tag behavior (if rendered as a link).                                                                                                                                                        |
+| `isProcessing`       | `boolean`                           | `false`        | Indicates if the button is in a processing/loading state.                                                                                                                                                                |
+| `processingLabel`    | `string`                            | `"Loading..."` | Label displayed during the processing/loading state.                                                                                                                                                                     |
+| `processingSpinner`  | `ReactNode`                         |                | Custom spinner element displayed during the processing/loading state.                                                                                                                                                    |
+| `label`              | `ReactNode`                         |                | Label or content displayed inside the button.                                                                                                                                                                            |
+| `outline`            | `boolean`                           | `false`        | Whether the button should have an outlined style.                                                                                                                                                                        |
+| `pill`               | `boolean`                           | `false`        | Whether the button should have rounded corners (pill style).                                                                                                                                                             |
+| `size`               | `keyof ButtonSizes`                 | `"md"`         | Size variant of the button (`xs`, `sm`, `md`, `lg`, `xl`).                                                                                                                                                               |
+| `icon`               | `boolean`                           | `false`        | Indicates if the button should display an icon.                                                                                                                                                                          |
+| `...props`           | `ButtonProps<T>`                    |                | Additional props passed down to the underlying `ButtonBase` component.                                                                                                                                                   |
+
+#### Example Usage
+
+Here are examples demonstrating various configurations of the `Button` component:
+
+##### Default Button
+
+```jsx
+import { Button } from "@dust/player";
+
+<Button>Click me</Button>;
+```
+
+<Button>Click me</Button>
+
+##### Color Variants
+
+```jsx
+<Button color="success">success</Button>
+<Button color="warning">warning</Button>
+<Button color="info">info</Button>
+<Button color="failure">failure</Button>
+<Button color="blue">blue</Button>
+<Button color="cyan">cyan</Button>
+<Button color="dark">dark</Button>
+<Button color="gray">gray</Button>
+<Button color="green">green</Button>
+<Button color="indigo">indigo</Button>
+<Button color="light">light</Button>
+<Button color="lime">lime</Button>
+<Button color="pink">pink</Button>
+<Button color="purple">purple</Button>
+<Button color="red">red</Button>
+<Button color="teal">teal</Button>
+<Button color="yellow">yellow</Button>
+```
+
+import { Button, ToggleButton } from "@dust/player";
+
+<div className="flex flex-wrap items-center gap-3">
+  <Button color="success">success</Button>
+  <Button color="warning">warning</Button>
+  <Button color="info">info</Button>
+  <Button color="failure">failure</Button>
+  <Button color="blue">blue</Button>
+  <Button color="cyan">cyan</Button>
+  <Button color="dark">dark</Button>
+  <Button color="gray">gray</Button>
+  <Button color="green">green</Button>
+  <Button color="indigo">indigo</Button>
+  <Button color="light">light</Button>
+  <Button color="lime">lime</Button>
+  <Button color="pink">pink</Button>
+  <Button color="purple">purple</Button>
+  <Button color="red">red</Button>
+  <Button color="teal">teal</Button>
+  <Button color="yellow">yellow</Button>
+</div>
+
+##### Outline
+
+```jsx
+<Button color="success" outline>success</Button>
+<Button color="warning" outline>warning</Button>
+<Button color="info" outline>info</Button>
+<Button color="failure" outline>failure</Button>
+<Button color="blue" outline>blue</Button>
+<Button color="cyan" outline>cyan</Button>
+<Button color="dark" outline>dark</Button>
+<Button color="gray" outline>gray</Button>
+<Button color="green" outline>green</Button>
+<Button color="indigo" outline>indigo</Button>
+<Button color="light" outline>light</Button>
+<Button color="lime" outline>lime</Button>
+<Button color="pink" outline>pink</Button>
+<Button color="purple" outline>purple</Button>
+<Button color="red" outline>red</Button>
+<Button color="teal" outline>teal</Button>
+<Button color="yellow" outline>yellow</Button>
+```
+
+<div className="flex flex-wrap items-center gap-3">
+  <Button color="success" outline>
+    success
+  </Button>
+  <Button color="warning" outline>
+    warning
+  </Button>
+  <Button color="info" outline>
+    info
+  </Button>
+  <Button color="failure" outline>
+    failure
+  </Button>
+  <Button color="blue" outline>
+    blue
+  </Button>
+  <Button color="cyan" outline>
+    cyan
+  </Button>
+  <Button color="dark" outline>
+    dark
+  </Button>
+  <Button color="gray" outline>
+    gray
+  </Button>
+  <Button color="green" outline>
+    green
+  </Button>
+  <Button color="indigo" outline>
+    indigo
+  </Button>
+  <Button color="light" outline>
+    light
+  </Button>
+  <Button color="lime" outline>
+    lime
+  </Button>
+  <Button color="pink" outline>
+    pink
+  </Button>
+  <Button color="purple" outline>
+    purple
+  </Button>
+  <Button color="red" outline>
+    red
+  </Button>
+  <Button color="teal" outline>
+    teal
+  </Button>
+  <Button color="yellow" outline>
+    yellow
+  </Button>
+</div>
+
+##### Gradient
+
+```jsx
+<Button gradientMonochrome="info">info</Button>
+<Button gradientMonochrome="success">success</Button>
+<Button gradientMonochrome="cyan">cyan</Button>
+<Button gradientMonochrome="teal">teal</Button>
+<Button gradientMonochrome="lime">lime</Button>
+<Button gradientMonochrome="failure">failure</Button>
+<Button gradientMonochrome="pink">pink</Button>
+<Button gradientMonochrome="purple">purple</Button>
+```
+
+<div className="flex items-center flex-wrap gap-3">
+  <Button gradientMonochrome="info">info</Button>
+  <Button gradientMonochrome="success">success</Button>
+  <Button gradientMonochrome="cyan">cyan</Button>
+  <Button gradientMonochrome="teal">teal</Button>
+  <Button gradientMonochrome="lime">lime</Button>
+  <Button gradientMonochrome="failure">failure</Button>
+  <Button gradientMonochrome="pink">pink</Button>
+  <Button gradientMonochrome="purple">purple</Button>
+</div>
+
+##### Gradient duotone
+
+```jsx
+<Button gradientDuoTone="purpleToBlue">Purple to Blue</Button>
+<Button gradientDuoTone="cyanToBlue">Cyan to Blue</Button>
+<Button gradientDuoTone="greenToBlue">Green to Blue</Button>
+<Button gradientDuoTone="purpleToPink">Purple to Pink</Button>
+<Button gradientDuoTone="pinkToOrange">Pink to Orange</Button>
+<Button gradientDuoTone="tealToLime">Teal to Lime</Button>
+<Button gradientDuoTone="redToYellow">Red to Yellow</Button>
+```
+
+<div className="flex items-center flex-wrap gap-3">
+  <Button gradientDuoTone="purpleToBlue">Purple to Blue</Button>
+  <Button gradientDuoTone="cyanToBlue">Cyan to Blue</Button>
+  <Button gradientDuoTone="greenToBlue">Green to Blue</Button>
+  <Button gradientDuoTone="purpleToPink">Purple to Pink</Button>
+  <Button gradientDuoTone="pinkToOrange">Pink to Orange</Button>
+  <Button gradientDuoTone="tealToLime">Teal to Lime</Button>
+  <Button gradientDuoTone="redToYellow">Red to Yellow</Button>
+</div>
+
+##### Pill
+
+```jsx
+<Button pill>Pill Style Button</Button>
+<Button color="purple" pill>Purple Pill Button</Button>
+<Button color="light" outline pill>Outlined Pill Button</Button>
+```
+
+<div className="flex flex-wrap items-center gap-3">
+  <Button pill>Pill</Button>
+  <Button color="purple" pill>
+    Purple
+  </Button>
+  <Button color="light" outline pill>
+    Outlined
+  </Button>
+</div>
+
+##### Full-width
+
+```jsx
+<Button fullSized>Full-width Button</Button>
+<Button fullSized color="success">Full-width Success Button</Button>
+<Button fullSized outline size="lg">Large Full-width Outlined Button</Button>
+```
+
+<div className="flex flex-wrap items-center gap-3">
+  <Button fullSized>Full-width Button</Button>
+  <Button fullSized color="success">
+    Full-width Success Button
+  </Button>
+  <Button fullSized outline size="lg">
+    Large Full-width Outlined Button
+  </Button>
+</div>
+
+##### Icon
+
+```jsx
+<Button icon>Icon Button</Button>
+<Button icon color="purple">Large Icon Button</Button>
+<Button icon color="purple" outline>Outlined Small Icon Button</Button>
+```
+
+<div className="flex flex-wrap items-center gap-3">
+  <Button icon>&#9829;</Button>
+  <Button icon color="purple">
+    &#9829;
+  </Button>
+  <Button icon color="purple" outline>
+    &#9829;
+  </Button>
+</div>
+
+##### Size
+
+```jsx
+<Button size="xs">Icon Button</Button>
+<Button size="sm">Icon Button</Button>
+<Button size="md">Icon Button</Button>
+<Button size="lg">Icon Button</Button>
+<Button size="xl">Icon Button</Button>
+```
+
+<div className="inline-block space-y-2">
+  <Button size="xs">xs Button</Button>
+  <Button size="sm">sm Button</Button>
+  <Button size="md">md Button</Button>
+  <Button size="lg">lg Button</Button>
+  <Button size="xl">xl Button</Button>
+</div>
+
+_Icon with size_
+
+```jsx
+<Button size="xs" icon>&#9829;</Button>
+<Button size="sm" icon>&#9829;</Button>
+<Button size="md" icon>&#9829;</Button>
+<Button size="lg" icon>&#9829;</Button>
+<Button size="xl" icon>&#9829;</Button>
+```
+
+<div className="flex flex-wrap items-center gap-3">
+  <Button size="xs" icon>
+    &#9829;
+  </Button>
+  <Button size="sm" icon>
+    &#9829;
+  </Button>
+  <Button size="md" icon>
+    &#9829;
+  </Button>
+  <Button size="lg" icon>
+    &#9829;
+  </Button>
+  <Button size="xl" icon>
+    &#9829;
+  </Button>
+</div>

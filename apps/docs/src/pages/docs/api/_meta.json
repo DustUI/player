@@ -10,5 +10,8 @@
   "-- Hooks": {
     "type": "separator",
     "title": "Hooks"
-  }
+  },
+  "useAudioTrack": "useAudioTrack",
+  "useTextTrack": "useTextTrack",
+  "useQualityTrack": "useQualityTrack"
 }

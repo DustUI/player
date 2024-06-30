@@ -1,6 +1,6 @@
 import { MouseEvent } from 'react';
 import { MediaPlayer, MediaPlayerProps, TimeText, TimelineProgress, TogglePlay } from '../../../components';
-import { ToggleButton } from '../../../components/button/favoriteButton';
+import { ToggleButton } from '../../../components/button/toggleButton';
 import { OverlaySetting } from './settings';
 
 interface PlayerProps extends MediaPlayerProps {

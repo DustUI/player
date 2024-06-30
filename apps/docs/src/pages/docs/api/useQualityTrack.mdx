@@ -1,0 +1,92 @@
+# useQualityTrack
+
+The `useQualityTrack` hook provides functionality for managing video quality levels in a video player using the `VideoPlayer` class.
+
+## Purpose
+
+This hook allows you to retrieve and manipulate the available quality levels in the video player. It provides information on the currently selected quality level and allows switching between automatic and manual quality settings.
+
+## Usage
+
+### Importing the Hook
+
+```javascript
+import { useQualityTrack } from "@dust/player";
+```
+
+### Using the Hook
+
+```javascript
+const { tracks, selectedQuality, isAuto, changeQualityTrack, setAutoQuality } =
+  useQualityTrack();
+```
+
+## Returned Values
+
+- **tracks**: `QualityLevel[]`
+
+  - An array of available quality levels, where each level contains:
+    - `id: string`: Unique identifier for the quality level.
+    - `height: number`: Height of the video in pixels.
+    - `width: number`: Width of the video in pixels.
+    - `bitrate: number`: Bitrate of the video stream.
+    - `frameRate: number`: Frame rate of the video.
+    - `enabled: boolean`: Indicates if this quality level is currently enabled.
+
+- **selectedQuality**: `string | null`
+
+  - The ID of the currently selected quality level.
+
+- **isAuto**: `boolean`
+
+  - Indicates whether the quality is set to automatic.
+
+- **changeQualityTrack**: `(id: string) => void`
+
+  - Function to change the video quality level by ID.
+  - **Parameters:**
+    - `id: string`: ID of the quality level to enable.
+
+- **setAutoQuality**: `() => void`
+  - Function to set the quality to automatic, allowing the player to manage quality based on bandwidth.
+
+## Example
+
+```javascript
+import React from "react";
+import { useQualityTrack } from "@dust/player";
+
+const QualitySelector = () => {
+  const {
+    tracks,
+    selectedQuality,
+    isAuto,
+    changeQualityTrack,
+    setAutoQuality,
+  } = useQualityTrack();
+
+  return (
+    <div>
+      <h3>Quality Levels</h3>
+      <button onClick={setAutoQuality} disabled={isAuto}>
+        Auto
+      </button>
+      <ul>
+        {tracks.map((track) => (
+          <li key={track.id}>
+            <button
+              onClick={() => changeQualityTrack(track.id)}
+              disabled={selectedQuality === track.id}>
+              {track.label} ({track.height}p)
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default QualitySelector;
+```
+
+In this example, the `QualitySelector` component uses the `useQualityTrack` hook to list available quality levels, allowing users to switch between them or set the quality to automatic.

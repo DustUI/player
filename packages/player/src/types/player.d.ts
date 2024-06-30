@@ -51,22 +51,6 @@ interface QualityLevel {
   [key: string]: any;
 }
 
-// interface AudioTracks {
-//   // Add methods and properties according to Video.js documentation
-//   tracks(): AudioTrack[];
-//   selectedIndex: number;
-//   [key: string]: any;
-// }
-
-// interface AudioTrack {
-//   id: string;
-//   kind: string;
-//   label: string;
-//   language: string;
-//   enabled: boolean;
-//   [key: string]: any;
-// }
-
 export interface VideoJsPlayer extends Player {
   // https://docs.videojs.com/player#playbackRates
   playbackRates(newRates?: number[]): number[];
@@ -76,19 +60,6 @@ export interface VideoJsPlayer extends Player {
 
   // Add type for audioTracks method
   audioTracks?(): AudioTrack;
-
-  // https://docs.videojs.com/player#audioOnlyMode
-  // audioOnlyMode(value: boolean): Promise<void>
-  // https://docs.videojs.com/player#audioPosterMode
-  // audioPosterMode(value: boolean): Promise<void>
-  // https://docs.videojs.com/player#breakpoints
-  // breakpoints(value: object | boolean): object
-  // https://docs.videojs.com/player#crossOrigin
-  // crossOrigin(value?: string): string
-  // https://docs.videojs.com/player#disablePictureInPicture
-  // disablePictureInPicture(value?: boolean): boolean
-  // https://docs.videojs.com/player#isInPictureInPicture
-  // isInPictureInPicture(value?: boolean): boolean
 }
 
 export interface VideoJsPlayerOptions extends videojs.ComponentOptions {

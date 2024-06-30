@@ -1,10 +1,4 @@
 /** @type {import('next').NextConfig} */
-// module.exports = {
-//   reactStrictMode: true,
-//   transpilePackages: ["@dust/player"],
-// };
-
-/** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,

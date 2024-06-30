@@ -1,0 +1,84 @@
+---
+title: "Toggle Fullscreen"
+description: "The `ToggleFullscreen` component is a React component that provides fullscreen toggle button functionality integrated with Video.js for video player control."
+---
+
+### ToggleFullscreen
+
+The `ToggleFullscreen` component is a React component that provides fullscreen toggle button functionality integrated with Video.js for video player control.
+
+#### Props
+
+The component accepts props from the `Button` component. [Click here](/docs/components/button) to read more.
+
+#### Example Usage
+
+```jsx
+import { ToggleFullscreen, MediaPlayer } from "@dust/player";
+
+function InitializePlayer() {
+  return (
+    <MediaPlayer
+      options={{
+        autoplay: false,
+        controls: true,
+        responsive: true,
+        aspectRatio: "16:9",
+        sources: [
+          {
+            src: "https://d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8",
+          },
+        ],
+      }}
+      className="w-full"
+    />
+  );
+}
+
+function VideoPlayerControls() {
+  return (
+    <div className="video-controls">
+      <ToggleFullscreen color="purple" size="md" icon />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <InitializePlayer />
+      <VideoPlayerControls />
+    </>
+  );
+}
+```
+
+import { ToggleFullscreen, MediaPlayer } from "@dust/player";
+
+<MediaPlayer
+  options={{
+    autoplay: false,
+    controls: true,
+    responsive: true,
+    aspectRatio: "16:9",
+    muted: true,
+    sources: [
+      {
+        src: "https://d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8",
+      },
+    ],
+  }}
+  className="hidden"
+/>
+
+<ToggleFullscreen color="purple" size="md" icon />
+
+### Functionality
+
+- **Fullscreen Toggle**: Clicking the button toggles between fullscreen and normal screen modes of the video player.
+- **Video Player Integration**: Monitors the video player's `fullscreenchange` event to reflect the current fullscreen state (`isFullscreen`).
+
+### Integration Notes
+
+- Ensure that `videoPlayer` is correctly initialized and accessible within the scope where `ToggleFullscreen` is used.
+- Customize the appearance and behavior of the button using props such as `color`, `size`, and `icon`.

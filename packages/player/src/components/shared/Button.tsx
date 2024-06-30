@@ -112,8 +112,8 @@ const ButtonComponent = forwardRef(
                     !gradientDuoTone && !gradientMonochrome && theme.color[color],
                     gradientDuoTone && !gradientMonochrome && theme.gradientDuoTone[gradientDuoTone],
                     !gradientDuoTone && gradientMonochrome && theme.gradient[gradientMonochrome],
-                    outline && !theme.outline.color[color] && theme.inner.outline,
-                    outline && (theme.outline.color[color] ?? theme.outline.color.default),
+                    // outline && !theme.outline.color[color] && theme.inner.outline,
+                    // outline && (theme.outline.color[color] ?? theme.outline.color.default),
                     fullSized && theme.fullSized,
                     theme.pill[pill ? "on" : "off"],
                     theme.outline[outline ? "on" : "off"],
@@ -147,4 +147,4 @@ const ButtonComponent = forwardRef(
 
 ButtonComponent.displayName = "Button";
 
-export const Button = (ButtonComponent)
+export const Button = ButtonComponent

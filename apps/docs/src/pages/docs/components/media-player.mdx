@@ -1,0 +1,123 @@
+# MediaPlayer
+
+The `MediaPlayer` component is a React component that integrates Video.js for video playback. Here’s a breakdown of its structure and props:
+
+#### Props
+
+| Name        | Type                   | Description                                           |
+| ----------- | ---------------------- | ----------------------------------------------------- |
+| `options`   | `VideoJsPlayerOptions` | Configuration options for Video.js player.            |
+| `onReady`   | `() => void`           | Callback function invoked when the player is ready.   |
+| `className` | `string` or `string[]` | Optional CSS classes to apply to the video container. |
+
+#### Example Usage
+
+```jsx
+import { MediaPlayer, VideoJsPlayerOptions } from '@dust/player';
+
+const playerOptions: VideoJsPlayerOptions = {
+  sources: [{ src: 'video.mp4', type: 'video/mp4' }],
+  autoplay: true,
+  controls: true,
+  aspectRatio: '16:9',
+};
+
+function App() {
+  return (
+    <MediaPlayer options={playerOptions} className="custom-player" />
+  );
+}
+```
+
+import { MediaPlayer } from "@dust/player";
+
+<MediaPlayer
+  options={{
+    autoplay: false,
+    controls: true,
+    responsive: true,
+    aspectRatio: '16:9',
+
+    sources: [
+      {
+        src: "https://d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8",
+      },
+    ],
+
+}}
+className="w-full"
+/>
+
+### VideoJsPlayerOptions Interface
+
+The `VideoJsPlayerOptions` interface defines all possible configuration options for the Video.js player. Here are the main sections and their respective properties:
+
+#### Main Configuration
+
+| Property      | Type                            | Description                                              |
+| ------------- | ------------------------------- | -------------------------------------------------------- |
+| `aspectRatio` | `string`                        | Aspect ratio of the video player.                        |
+| `autoplay`    | `boolean` or `videojs.Autoplay` | Automatically start playback when loaded.                |
+| `controls`    | `boolean`                       | Show native browser controls.                            |
+| `sources`     | `videojs.Tech.SourceObject[]`   | Array of video sources for different formats.            |
+| `poster`      | `string`                        | URL to an image file to show before playback starts.     |
+| `preload`     | `videojs.Preload`               | Browser's preload behavior (`auto`, `metadata`, `none`). |
+| `loop`        | `boolean`                       | Loop the video playback.                                 |
+| `muted`       | `boolean`                       | Start with audio muted.                                  |
+
+#### Advanced Configuration
+
+| Property        | Type                                    | Description                                         |
+| --------------- | --------------------------------------- | --------------------------------------------------- |
+| `playbackRates` | `number[]`                              | Array of playback rates (e.g., `[0.5, 1, 1.5, 2]`). |
+| `techOrder`     | `string[]`                              | Order of tech (e.g., `['html5', 'flash']`).         |
+| `plugins`       | `Partial<VideoJsPlayerPluginOptions>`   | Plugin configurations.                              |
+| `fullscreen`    | `{ options: { navigationUI: "hide" } }` | Fullscreen mode options.                            |
+
+#### Example Usage
+
+```typescript
+const playerOptions: VideoJsPlayerOptions = {
+  sources: [{ src: "video.mp4", type: "video/mp4" }],
+  autoplay: true,
+  controls: true,
+  aspectRatio: "16:9",
+  poster: "poster.jpg",
+  preload: "auto",
+  loop: true,
+  muted: false,
+};
+```
+
+## VideoJsPlayerOptions Interface
+
+The `VideoJsPlayerOptions` interface provides detailed configuration options for Video.js.
+
+### Main Configuration
+
+| Property      | Type      | Description                               |
+| ------------- | --------- | ----------------------------------------- |
+| `aspectRatio` | `string`  | Aspect ratio of the video player.         |
+| `autoplay`    | `boolean` | Automatically start playback when loaded. |
+| ...           | ...       | ...                                       |
+
+### Advanced Configuration
+
+| Property        | Type       | Description                 |
+| --------------- | ---------- | --------------------------- |
+| `playbackRates` | `number[]` | Array of playback rates.    |
+| `techOrder`     | `string[]` | Order of tech for playback. |
+| ...             | ...        | ...                         |
+
+### Example Usage
+
+```typescript
+const playerOptions: VideoJsPlayerOptions = {
+  sources: [{ src: "video.mp4", type: "video/mp4" }],
+  autoplay: true,
+  controls: true,
+  aspectRatio: "16:9",
+};
+```
+
+This template gives you a structured way to document both your `MediaPlayer` component and the `VideoJsPlayerOptions` interface using Markdown (MDX). Adjust the content based on additional details or specific requirements you may have for your documentation.

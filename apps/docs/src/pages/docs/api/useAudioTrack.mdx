@@ -1,0 +1,75 @@
+# useAudioTrack
+
+The `useAudioTrack` hook provides functionality for managing audio tracks in a video player using the `VideoPlayer` class.
+
+## Purpose
+
+This hook allows you to retrieve and manipulate the available audio tracks in the video player. It provides information on whether audio tracks are available and functions to change the active audio track.
+
+## Usage
+
+### Importing the Hook
+
+```javascript
+import { useAudioTrack } from "@dust/player";
+```
+
+### Using the Hook
+
+```javascript
+const { isAvailable, tracks, changeAudioTrack } = useAudioTrack();
+```
+
+## Returned Values
+
+- **isAvailable**: `boolean`
+
+  - Indicates whether audio tracks are available.
+
+- **tracks**: `AudioTrackItem[]`
+
+  - An array of available audio tracks, where each track contains:
+    - `index: number`: Index of the audio track.
+    - `id: number`: Unique identifier for the audio track.
+    - `label: string`: Label of the audio track.
+    - `language: string`: Language code of the audio track.
+    - `enabled: boolean`: Indicates if the audio track is currently enabled.
+    - `kind: string`: Type of audio track.
+
+- **changeAudioTrack**: `(index: number) => void`
+  - Function to change the active audio track by index.
+  - **Parameters:**
+    - `index: number`: Index of the audio track to enable.
+
+## Example
+
+```javascript
+import React from "react";
+import { useAudioTrack } from "@dust/player";
+
+const AudioTrackSelector = () => {
+  const { isAvailable, tracks, changeAudioTrack } = useAudioTrack();
+
+  return (
+    <div>
+      {isAvailable ? (
+        <ul>
+          {tracks.map((track) => (
+            <li key={track.id}>
+              <button onClick={() => changeAudioTrack(track.index)}>
+                {track.label} ({track.language})
+              </button>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No audio tracks available</p>
+      )}
+    </div>
+  );
+};
+
+export default AudioTrackSelector;
+```
+
+In this example, the `AudioTrackSelector` component uses the `useAudioTrack` hook to list available audio tracks and allows users to switch between them.

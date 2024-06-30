@@ -1,0 +1,90 @@
+---
+title: "Pay/Pause"
+description: "To create documentation for the `TogglePlay` component, which serves as a play/pause button integrated with a video player using Video.js, follow this structured approach:"
+---
+
+To create documentation for the `TogglePlay` component, which serves as a play/pause button integrated with a video player using Video.js, follow this structured approach:
+
+### TogglePlay Play/Pause
+
+The `TogglePlay` component is a React component that provides a play/pause button functionality integrated with Video.js for video playback control.
+
+#### Props
+
+import Link from "next/link";
+
+The component accepts props from the `Button` component. <span className="text-red-200"><Link href="/docs/components/button">Click here</Link></span> to read more.
+
+#### Example Usage
+
+```jsx
+import { TogglePlay, MediaPlayer } from "@dust/player";
+
+function InitializePlayer() {
+    return <MediaPlayer
+        options={{
+            autoplay: false,
+            controls: true,
+            responsive: true,
+            aspectRatio: '16:9',
+
+            sources: [
+            {
+                src: "https://d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8",
+            },
+            ],
+
+        }}
+        className="w-full"
+    />
+}
+
+function VideoPlayerControls() {
+  return (
+    <div className="video-controls">
+      <TogglePlay color="purple" size="md" icon />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <InitializePlayer/>
+    <VideoPlayerControls />
+  );
+}
+
+```
+
+import { TogglePlay, MediaPlayer } from "@dust/player";
+
+<MediaPlayer
+    options={{
+        autoplay: false,
+        controls: true,
+        responsive: true,
+        aspectRatio: '16:9',
+        muted: true,
+        sources: [
+        {
+            src: "https://d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8",
+        },
+        ],
+
+    }}
+    className="hidden"
+
+/>
+
+<TogglePlay color="purple" size="md" icon />
+
+### Functionality
+
+- **Play/Pause Toggle**: Clicking the button toggles between play and pause states of the video player.
+- **Video Player Integration**: Monitors the video player's `timeupdate` event to reflect the current play state (`isPlaying`).
+
+### Integration Notes
+
+- Ensure that `videoPlayer` is correctly initialized and accessible within the scope where `TogglePlay` is used.
+- Use this `<MediaPlayer>` component to initialized the video player
+- Customize the appearance and behavior of the button using props such as `color`, `size`, and `icon`.

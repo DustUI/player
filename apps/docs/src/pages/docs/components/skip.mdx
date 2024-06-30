@@ -1,0 +1,130 @@
+---
+title: "Skipping"
+---
+
+To document the `SkipButton` component effectively, which allows skipping forward or backward in a video using Video.js, follow this structured approach:
+
+### Skip Control
+
+The `SkipButton` component is a React component that provides skip control functionality integrated with Video.js for video playback.
+
+#### Props
+
+The component extends `ButtonProps` from the `Button` component and includes an additional `seek` prop for specifying the skip duration.
+
+| Name   | Type                                | Description                              |
+| ------ | ----------------------------------- | ---------------------------------------- |
+| `seek` | `5 \| 10 \| 30 \| -5 \| -10 \| -30` | For this number of seconds have an icons |
+
+#### Example Usage
+
+```jsx copy
+import { SkipButton, MediaPlayer } from "@dust/player";
+
+function InitializePlayer() {
+  return (
+    <MediaPlayer
+      options={{
+        autoplay: false,
+        controls: true,
+        responsive: true,
+        aspectRatio: "16:9",
+        sources: [
+          {
+            src: "https://example.com/video.mp4",
+            type: "video/mp4",
+          },
+        ],
+      }}
+      className="w-full"
+    />
+  );
+}
+
+function VideoPlayerControls() {
+  return (
+    <div className="video-controls">
+      <SkipButton color="blue" size="md" icon seek={10} />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <>
+      <InitializePlayer />
+      <VideoPlayerControls />
+    </>
+  );
+}
+```
+
+import { SkipButton, MediaPlayer } from "@dust/player";
+
+<MediaPlayer
+    options={{
+        autoplay: false,
+        controls: true,
+        responsive: true,
+        aspectRatio: '16:9',
+        muted: true,
+        sources: [
+        {
+            src: "https://d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8",
+        },
+        ],
+
+    }}
+    className="hidden"
+
+/>
+
+#### Skip Button Sample
+
+##### forward
+
+```jsx copy
+<SkipButton color="purple" size="md" icon seek={5} />
+```
+
+<SkipButton color="purple" size="md" icon seek={5} />
+
+```jsx copy
+<SkipButton color="purple" size="md" icon seek={10} />
+```
+
+<SkipButton color="purple" size="md" icon seek={10} />
+
+```jsx copy
+<SkipButton color="purple" size="md" icon seek={30} />
+```
+
+<SkipButton color="purple" size="md" icon seek={30} />
+
+##### backward
+
+```jsx copy
+<SkipButton color="purple" size="md" icon seek={-5} />
+```
+
+<SkipButton color="purple" size="md" icon seek={-5} />
+```jsx copy
+<SkipButton color="purple" size="md" icon seek={-10} />
+```
+<SkipButton color="purple" size="md" icon seek={-10} />
+
+```jsx copy
+<SkipButton color="purple" size="md" icon seek={-30} />
+```
+
+<SkipButton color="purple" size="md" icon seek={-30} />
+
+### Functionality
+
+- **Skip Control**: Clicking the button skips the video playback forward or backward by the specified `seek` duration in seconds.
+- **Video Player Integration**: Utilizes `videoPlayer.seek()` method to skip video playback.
+
+### Integration Notes
+
+- Ensure that `videoPlayer` is correctly initialized and accessible within the scope where `SkipButton` is used.
+- Customize the appearance and behavior of the button using props such as `color`, `size`, and `icon`.

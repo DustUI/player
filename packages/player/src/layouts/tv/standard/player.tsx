@@ -1,6 +1,5 @@
 import { MouseEvent } from 'react';
-import { MediaPlayer, MediaPlayerProps, SkipButton, TimeText, TimelineProgress, ToggleFullscreen, TogglePlay, Volume } from '../../../components';
-import { ToggleButton } from '../../../components/button/favoriteButton';
+import { MediaPlayer, MediaPlayerProps, SkipButton, TimeText, TimelineProgress, ToggleButton, ToggleFullscreen, TogglePlay, Volume } from '../../../components';
 import { Button } from '../../../components/shared';
 import { OverlaySetting } from './settings';
 
