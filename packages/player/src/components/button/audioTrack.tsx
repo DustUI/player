@@ -12,15 +12,15 @@ export const AudioTrack = <T extends ElementType = "button">(
 
     const { tracks, isAvailable, changeAudioTrack } = useAudioTrack()
 
-    return isAvailable && <div className='relative group'>
+    return isAvailable && <div className='dp-relative dp-group'>
         <Button {...{ color, size, pill, props }} >
             <span className="vjs-icon-audio" />
         </Button>
-        <ul className='absolute w-40 flex flex-col bottom-full left-0 invisible opacity-0 group-hover:visible group-hover:opacity-100'>
+        <ul className='dp-absolute dp-w-40 dp-flex dp-flex-col dp-bottom-full dp-left-0 dp-invisible dp-opacity-0 dp-group-hover:visible dp-group-hover:opacity-100'>
             {
                 tracks.map((textTrack, index) => {
                     return <li key={index}>
-                        <Button color="info" className='w-full rounded-none' outline={textTrack.enabled} onClick={() => changeAudioTrack(index)}>
+                        <Button color="info" className='dp-w-full dp-rounded-none' outline={textTrack.enabled} onClick={() => changeAudioTrack(index)}>
                             {textTrack.label}
                         </Button>
                     </li>

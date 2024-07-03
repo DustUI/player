@@ -3,6 +3,7 @@ import type { Config } from "tailwindcss";
 
 const config: Pick<Config, "prefix" | "presets" | "content" | "darkMode"> = {
   content: ["./src/**/*.{js,ts,jsx,tsx}"],
+  prefix: "dp-",
   darkMode: "class",
   presets: [sharedConfig],
 };

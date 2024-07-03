@@ -78,7 +78,7 @@ export const TimelineProgress = ({
 
     return (
         videoPlayer?.player && !videoPlayer.isLive() && (
-            <div className='flex-1'>
+            <div className='dp-flex-1'>
                 <div
                     ref={progressContainerRef}
                     onMouseMove={handleMouseMove}
@@ -94,7 +94,7 @@ export const TimelineProgress = ({
                         theme.pill[pill ? "on" : "off"],
                         fullSized && theme.fullSized,
                         sizeType[size],
-                        "relative block px-0",
+                        "dp-relative dp-block dp-px-0",
                         className
                     )}
                 >
@@ -107,20 +107,20 @@ export const TimelineProgress = ({
                             outline && !theme.outline.color[color] && theme.inner.outline,
                             isProcessing && theme.isProcessing,
                             isProcessing && theme.inner.isProcessingPadding[size],
-                            "relative block h-full"
+                            "dp-relative dp-block dp-h-full"
                         )}
                         style={{ width: `${timelineInfo.percentage}%` }}
                     >
                         <div
                             className={cn(
-                                'h-1 w-1 rounded-full block absolute right-0 top-1/2 bottom-1/2 -translate-y-1/2 bg-gray-100 scale-[3]',
+                                'dp-h-1 dp-w-1 dp-rounded-full dp-block dp-absolute dp-right-0 dp-top-1/2 dp-bottom-1/2 -dp-translate-y-1/2 dp-bg-gray-100 dp-scale-[3]',
                                 dotStyle
                             )}
                             onMouseMove={handleClick}
                         />
                         {tooltip.visible && (
                             <div
-                                className="bg-gray-100 rounded absolute top-[-2.5em] right-[-1.5em] px-2 py-1 text-black"
+                                className="dp-bg-gray-100 dp-rounded dp-absolute dp-top-[-2.5em] dp-right-[-1.5em] dp-px-2 dp-py-1 dp-text-black"
                                 aria-hidden="true"
                             >
                                 {(timelineInfo.currentTime / 60).toFixed(2)}
@@ -129,7 +129,7 @@ export const TimelineProgress = ({
                     </div>
                     {tooltip.visible && (
                         <div
-                            className="absolute bottom-[115%] bg-black text-white rounded px-2"
+                            className="dp-absolute dp-bottom-[115%] dp-bg-black dp-text-white dp-rounded dp-px-2"
                             style={{ left: `${tooltip.position}%` }}
                         >
                             {tooltip.time.toFixed(2)}s

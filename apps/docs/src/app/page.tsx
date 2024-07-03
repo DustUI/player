@@ -11,16 +11,13 @@ import { Testimonials } from "../components/Testimonials";
 export default function Home() {
   return (
     <>
-      <Header />
-      <main>
-        <Hero />
-        <PrimaryFeatures />
-        <SecondaryFeatures />
-        <CallToAction />
-        <Testimonials />
-        <Faqs />
-      </main>
-      <Footer />
+
+      <Hero />
+      <PrimaryFeatures />
+      <SecondaryFeatures />
+      <CallToAction />
+      <Testimonials />
+      <Faqs />
     </>
   )
 }

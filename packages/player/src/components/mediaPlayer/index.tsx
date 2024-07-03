@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { videoPlayer } from '../../core';
-import { VideoJsPlayerOptions } from '../../types/player';
+import { VideoJsPlayer, VideoJsPlayerOptions } from '../../types/player';
 
 export interface MediaPlayerProps {
     options: VideoJsPlayerOptions,
@@ -10,7 +10,7 @@ export interface MediaPlayerProps {
 
 export function MediaPlayer({ options, className, onReady }: MediaPlayerProps) {
 
-    const playerRef = useRef<any>(null);
+    const playerRef = useRef<VideoJsPlayer | null>(null);
     const videoRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
@@ -20,7 +20,7 @@ export function MediaPlayer({ options, className, onReady }: MediaPlayerProps) {
             const videoElement = document.createElement("video-js");
 
             videoElement.classList.add('vjs-big-play-centered');
-            videoElement.classList.add('w-full');
+            videoElement.classList.add('dp-w-full');
             if (className) {
                 let classList: string[] = []
                 if (typeof className === "string") {
@@ -57,8 +57,8 @@ export function MediaPlayer({ options, className, onReady }: MediaPlayerProps) {
     }, [playerRef]);
 
     return (
-        <div data-vjs-player>
-            <div ref={videoRef} />
+        <div data-vjs-player className='dp-h-full'>
+            <div ref={videoRef} className='dp-h-full' />
         </div>
     )
 }

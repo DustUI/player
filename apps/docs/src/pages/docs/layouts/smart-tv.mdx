@@ -1,0 +1,60 @@
+---
+title: "Smart TV"
+---
+
+### Smart TV Player
+
+The `Player` component is a React functional component designed to embed a video player using the `STVPlayer` from the `@dust/player` package. Below is a detailed breakdown of its usage and configuration:
+
+#### Import Statements
+
+- `@dust/player/styles.css`: Imports the necessary styles for the player.
+- `STVPlayer`: The main player component used to render the video.
+
+#### Props
+
+- **options**: `VideoJsPlayerOptions` - Optional configuration options for the player, such as autoplay and controls.
+- **onReady**: Callback function that triggers when the player is ready.
+- **className**: Custom class names for styling the player.
+- **theme**: Defines the player's theme, options include `default`, `overlay`, `grid`, `mini`, `sidebar`.
+- **onController**: Event handler for controller interactions.
+- **onButtonClick**: Event handler for button clicks within the player.
+
+#### JSX Structure
+
+```javascript
+import "@dust/player/styles.css";
+import { STVPlayer } from "@dust/player";
+import { useState } from "react";
+
+export default function Player({ theme }: { theme: string }) {
+    const [ready, setReady] = useState(false);
+    const options = {
+        autoplay: false,
+        controls: true,
+        responsive: true,
+        sources: [
+            {
+                src: "https://d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8",
+            },
+        ],
+    };
+
+    const handleOnReady = () => {
+        console.log('Player Ready');
+        setReady(true);
+    };
+
+    return (
+        <STVPlayer options={options} onReady={handleOnReady} className="!w-auto !h-[650px]" />
+    );
+}
+```
+
+#### Demo
+
+import STVDemo from "./components/stvDemo";
+
+<STVDemo />
+
+This setup allows for customizable themes and provides an interactive video player experience within your React application.

@@ -46,26 +46,26 @@ export const Subtitle = <T extends ElementType = "button">(
 
     return (
         isAvailable && <>
-            {!show && <Button onClick={onClickHandler} color={color} size={size} className="flex justify-start items-center space-x-3" {...theirProps} >
-                <div className='flex items-start justify-center text-3xl'>
+            {!show && <Button onClick={onClickHandler} color={color} size={size} className="dp-flex dp-justify-start dp-items-center dp-space-x-3" {...theirProps} >
+                <div className='dp-flex dp-items-start dp-justify-center dp-text-3xl'>
                     <span className="vjs-icon-captions" />
                 </div>
-                <div className='flex flex-col items-start'>
+                <div className='dp-flex dp-flex-col dp-items-start'>
                     <span>{title}</span>
                     <small>{renderActiveLabel()}</small>
                 </div>
             </Button>}
             {
-                show && <ul className='w-full flex flex-col space-y-1'>
-                    <li className='flex flex-col'>
-                        <Button color="info" className='w-full items-start' outline={isDisable} onClick={() => disableTextTrack()}>
+                show && <ul className='dp-w-full dp-flex dp-flex-col dp-space-y-1'>
+                    <li className='dp-flex dp-flex-col'>
+                        <Button color="info" className='dp-w-full dp-items-start' outline={isDisable} onClick={() => disableTextTrack()}>
                             Captions off
                         </Button>
                     </li>
                     {
                         tracks.map((track, index) => {
-                            return <li key={index} className='flex flex-col'>
-                                <Button color="info" className='w-full' outline={track.mode === "showing"} onClick={() => enableTextTrack(track.id)}>
+                            return <li key={index} className='dp-flex dp-flex-col'>
+                                <Button color="info" className='dp-w-full' outline={track.mode === "showing"} onClick={() => enableTextTrack(track.id)}>
                                     {track.label}
                                 </Button>
                             </li>

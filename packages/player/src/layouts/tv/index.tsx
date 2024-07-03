@@ -14,7 +14,7 @@ export function STVPlayer({ onButtonClick, theme = "default", ...rest }: PlayerP
     useEffect(() => {
         const defaultControl = document.querySelector(".vjs-control-bar")
         if (defaultControl) defaultControl.remove()
-    }, [])
+    }, [theme])
 
     return (
         <>

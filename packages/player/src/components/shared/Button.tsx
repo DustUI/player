@@ -1,5 +1,5 @@
 import { ElementType, ReactNode, forwardRef } from "react";
-import { Theme, ThemeBoolean, ThemeColors, ThemeGradientColors, ThemeGradientDuoToneColors, ThemeSizes } from "../..//core";
+import { Theme, ThemeBoolean, ThemeColors, ThemeGradientColors, ThemeGradientDuoToneColors, ThemeSizes } from "../../core";
 import { PolymorphicComponentPropWithRef, PolymorphicRef, cn } from "../../utils";
 import { ButtonBase, type ButtonBaseProps } from "./ButtonBase";
 

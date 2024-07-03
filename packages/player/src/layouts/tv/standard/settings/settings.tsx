@@ -27,7 +27,7 @@ export const OverlaySetting = <T extends ElementType = "button">(
 
     return (
         <>
-            <Sidebar position="right" className='w-96'>
+            <Sidebar position="right" className='dp-w-96'>
                 <SidebarTrigger asChild>
                     <Button color={color} size={size} pill={pill} icon={icon} {...theirProps}>
                         <span className="vjs-icon-cog" />
@@ -35,7 +35,7 @@ export const OverlaySetting = <T extends ElementType = "button">(
                 </SidebarTrigger>
                 <SidebarContent>
                     <SidebarHeader close={false}>
-                        <div className="flex items-center space-x-3">
+                        <div className="dp-flex dp-items-center dp-space-x-3">
                             {
                                 onChange.show && <Button onClick={() => setOnChange({
                                     show: false,
@@ -43,10 +43,10 @@ export const OverlaySetting = <T extends ElementType = "button">(
                                     key: undefined,
                                 })}>{`<`}</Button>
                             }
-                            <h1 className="text-xl">{onChange.title || 'Settings'}</h1>
+                            <h1 className="dp-text-xl">{onChange.title || 'Settings'}</h1>
                         </div>
                     </SidebarHeader>
-                    <div className="grid gap-4 p-4">
+                    <div className="dp-grid dp-gap-4 dp-p-4">
                         {(onChange.key === "quality" || !onChange.show) && <VideoQuality onClick={(e: any) => setOnChange(e)} show={onChange.show} />}
                         {(onChange.key === "subtitle" || !onChange.show) && <Subtitle onClick={(e: any) => setOnChange(e)} show={onChange.show} />}
                         {(onChange.key === "audio" || !onChange.show) && <Audio onClick={(e: any) => setOnChange(e)} show={onChange.show} />}

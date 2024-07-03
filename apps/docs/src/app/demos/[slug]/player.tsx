@@ -4,7 +4,7 @@ import "@dust/player/styles.css";
 import { STVPlayer } from "@dust/player";
 import { useState } from "react";
 
-export default function Player() {
+export default function Player({ slug }: { slug: string }) {
     const [ready, setReady] = useState(false)
     const options = {
         autoplay: true,
@@ -13,8 +13,6 @@ export default function Player() {
         sources: [
             {
                 src: "https://d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8",
-                // src: 'https://livesim.dashif.org/livesim/mup_30/testpic_2s/Manifest.mpd',
-                // type: "application/x-mpegURL"
             },
         ],
     }
@@ -24,8 +22,7 @@ export default function Player() {
         setReady(true)
     }
 
-    return (<div className="flex">
-        <STVPlayer options={options} onReady={handleOnReady} />
-    </div>
+    return (
+        <STVPlayer options={options} onReady={handleOnReady} className="!w-auto !h-[650px]" />
     );
 }

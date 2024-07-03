@@ -51,8 +51,8 @@ export const TimeText = <T extends ElementType = "div">(
                             <span>{buildTimeString(timelineInfo.duration, timelineInfo.duration > 3600)}</span>
                         </>
                     :
-                    <div className="flex items-center justify-center">
-                        <span className="vjs-icon-circle text-red-400"></span>
+                    <div className="dp-flex dp-items-center dp-justify-center">
+                        <span className="vjs-icon-circle dp-text-red-400"></span>
                         <span>Live</span>
                     </div>
             }

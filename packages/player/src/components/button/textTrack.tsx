@@ -12,20 +12,20 @@ export const TextTrack = <T extends ElementType = "button">(
 
     const { isAvailable, disableTextTrack, enableTextTrack, tracks, isDisable } = useTextTrack()
 
-    return isAvailable && <div className='relative group'>
+    return isAvailable && <div className='dp-relative dp-group'>
         <Button {...{ color, size, pill, props }} >
             <span className="vjs-icon-captions" />
         </Button>
-        <ul className='absolute w-40 flex flex-col bottom-full left-0 invisible opacity-0 group-hover:visible group-hover:opacity-100'>
+        <ul className='dp-absolute dp-w-40 dp-flex dp-flex-col dp-bottom-full dp-left-0 dp-invisible dp-opacity-0 dp-group-hover:visible dp-group-hover:opacity-100'>
             <li className=''>
-                <Button color="info" className='w-full rounded-none' outline={isDisable} onClick={() => disableTextTrack()}>
+                <Button color="info" className='dp-w-full dp-rounded-none' outline={isDisable} onClick={() => disableTextTrack()}>
                     Captions off
                 </Button>
             </li>
             {
                 tracks.map((textTrack, index) => {
                     return <li key={index}>
-                        <Button color="info" className='w-full rounded-none' outline={textTrack.mode === "showing"} onClick={() => enableTextTrack(textTrack.id)}>
+                        <Button color="info" className='dp-w-full dp-rounded-none' outline={textTrack.mode === "showing"} onClick={() => enableTextTrack(textTrack.id)}>
                             {textTrack.label}
                         </Button>
                     </li>

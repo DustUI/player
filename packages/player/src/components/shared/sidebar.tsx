@@ -30,29 +30,29 @@ export const Sidebar: React.FC<SidebarProps> = ({ position, children, className,
 
 
     const sidebarClasses = cn(
-        'fixed bg-gray-800 text-white transition-transform duration-300 delay-150 ease-in-out z-40',
+        'dp-fixed dp-bg-gray-800 dp-text-white dp-transition-transform dp-duration-300 dp-delay-150 dp-ease-in-out dp-z-40',
         isOpen && {
-            'top-0 left-0 w-64 h-full transform': position === 'left',
-            'top-0 right-0 w-64 h-full transform': position === 'right',
-            'top-0 left-0 w-full h-64 transform': position === 'top',
-            'bottom-0 left-0 w-full h-64 transform': position === 'bottom',
+            'dp-top-0 dp-left-0 dp-w-64 dp-h-full dp-transform': position === 'left',
+            'dp-top-0 dp-right-0 dp-w-64 dp-h-full dp-transform': position === 'right',
+            'dp-top-0 dp-left-0 dp-w-full dp-h-64 dp-transform': position === 'top',
+            'dp-bottom-0 dp-left-0 dp-w-full dp-h-64 dp-transform': position === 'bottom',
         },
         !isOpen && {
-            '-translate-x-full': position === 'left',
-            'translate-x-full': position === 'right',
-            '-translate-y-full': position === 'top',
-            'translate-y-full': position === 'bottom',
+            '-dp-translate-x-full': position === 'left',
+            'dp-translate-x-full': position === 'right',
+            '-dp-translate-y-full': position === 'top',
+            'dp-translate-y-full': position === 'bottom',
         },
-        ((position === 'right' || position === 'left') && !isOpen) && "translate-x-0",
-        ((position === 'bottom' || position === 'top') && !isOpen) && "translate-y-0",
+        ((position === 'right' || position === 'left') && !isOpen) && "dp-translate-x-0",
+        ((position === 'bottom' || position === 'top') && !isOpen) && "dp-translate-y-0",
         className
     );
 
     const overlayClasses = cn(
-        'fixed inset-0 bg-black bg-opacity-50 transition-opacity duration-300 ease-in-out z-30',
+        'dp-fixed dp-inset-0 dp-bg-black dp-bg-opacity-50 dp-transition-opacity dp-duration-300 dp-ease-in-out dp-z-30',
         {
-            'opacity-0 pointer-events-none': !isOpen,
-            'opacity-100': isOpen,
+            'dp-opacity-0 dp-pointer-events-none': !isOpen,
+            'dp-opacity-100': isOpen,
         }
     );
 
@@ -98,20 +98,20 @@ interface SidebarElementProps extends React.HTMLAttributes<HTMLDivElement> {
     children: ReactNode;
 }
 export const SidebarHeader: React.FC<SidebarElementProps> = ({ children, close = true, ...props }) => {
-    return <div className="p-4 border-b border-gray-700" {...props}>
+    return <div className="dp-p-4 dp-border-b dp-border-gray-700" {...props}>
         {close && <SidebarCloseButton />}
         {children}
     </div>;
 };
 
 export const SidebarFooter: React.FC<SidebarElementProps> = ({ children, ...props }) => {
-    return <div className="p-4 border-t border-gray-700" {...props}>{children}</div>;
+    return <div className="dp-p-4 dp-border-t dp-border-gray-700" {...props}>{children}</div>;
 };
 
 const SidebarCloseButton: React.FC<React.HTMLAttributes<HTMLButtonElement>> = (props) => {
     const { toggle } = useSidebarContext();
     return (
-        <button className="absolute top-2 right-2 text-2xl" onClick={toggle} {...props}>
+        <button className="dp-absolute dp-top-2 dp-right-2 dp-text-2xl" onClick={toggle} {...props}>
             &times;
         </button>
     );
