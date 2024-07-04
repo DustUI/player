@@ -1,5 +1,6 @@
 import { ElementType, useEffect, useState } from "react";
-import { Theme, videoPlayer } from "../../core";
+import { Theme } from "../../core";
+import { useMediaPlayer } from "../../hooks";
 import { buildTimeString, cn } from "../../utils";
 import { ButtonProps, ButtonTheme } from "../shared/Button";
 
@@ -16,6 +17,7 @@ export const TimeText = <T extends ElementType = "div">(
     }: TimeProps<T>) => {
 
     const [timelineInfo, setTimelineInfo] = useState({ currentTime: 0, duration: 0, percentage: 0 });
+    const { videoPlayer } = useMediaPlayer()
 
     useEffect(() => {
         const handleTimeUpdate = () => {

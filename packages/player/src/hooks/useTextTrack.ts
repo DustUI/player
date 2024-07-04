@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { videoPlayer } from "../core";
+import { useMediaPlayer } from "./useMediaPlayer";
 
 interface TextTrackItem {
   index: number;
@@ -13,6 +13,7 @@ interface TextTrackItem {
 }
 
 export const useTextTrack = () => {
+  const { videoPlayer } = useMediaPlayer();
   const [isAvailable, setAvailable] = useState(false);
   const [isDisable, setIsDisable] = useState(false);
   const [tracks, setTextTracks] = useState<TextTrackItem[]>([]);

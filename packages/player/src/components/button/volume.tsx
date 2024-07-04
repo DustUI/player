@@ -1,5 +1,5 @@
 import { ElementType, useState } from 'react';
-import { videoPlayer } from '../../core';
+import { useMediaPlayer } from '../../hooks';
 import { ButtonBaseProps } from '../shared';
 import { Button, ButtonProps } from '../shared/Button';
 
@@ -13,6 +13,7 @@ export const Volume = <T extends ElementType = "button">(
     }: ButtonProps<T>) => {
     const theirProps = props as ButtonBaseProps<T>;
 
+    const { videoPlayer } = useMediaPlayer()
     const [isMute, setIsMute] = useState(false)
 
     const handleTimeUpdate = () => {

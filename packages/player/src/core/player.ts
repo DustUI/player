@@ -11,6 +11,7 @@ export class VideoPlayer {
   player: VideoJsPlayer | any = null;
   isLoading: boolean = true;
   isReady: boolean = false;
+  isPlaying: boolean = false;
 
   private onTimeline:
     | ((info: {
@@ -50,6 +51,7 @@ export class VideoPlayer {
 
   // Handle time update event
   private handleTimeUpdate = () => {
+    this.isPlaying = !this.player?.paused();
     if (this.onTimeline) {
       this.onTimeline(this.getTimeline());
     }
@@ -259,8 +261,17 @@ export class VideoPlayer {
   changeVolume(amount: number) {
     const currentVolume = this.player?.volume() || 0;
     let newVolume = currentVolume + amount;
-    if (newVolume > 1) newVolume = 1;
-    if (newVolume < 0) newVolume = 0;
+    if (newVolume > 1) {
+      newVolume = 1;
+    }
+    if (newVolume < 0) {
+      this.activeIcons("volume-low");
+      newVolume = 0;
+    } else if (newVolume < 0.7) {
+      this.activeIcons("volume-mid");
+    } else {
+      this.activeIcons("volume-high");
+    }
     this.player?.volume(newVolume);
   }
 
@@ -429,5 +440,5 @@ export class VideoPlayer {
   }
 }
 
-export const videoPlayer = new VideoPlayer();
+// export const videoPlayer = new VideoPlayer();
 export type VideoPlayerInstance = InstanceType<typeof VideoPlayer>;

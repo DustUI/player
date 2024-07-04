@@ -12,6 +12,10 @@ interface PlayerProps extends MediaPlayerProps {
 export function STVPlayer({ onButtonClick, theme = "default", ...rest }: PlayerProps) {
 
     useEffect(() => {
+
+    }, [])
+
+    useEffect(() => {
         const defaultControl = document.querySelector(".vjs-control-bar")
         if (defaultControl) defaultControl.remove()
     }, [theme])

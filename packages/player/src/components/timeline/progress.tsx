@@ -1,5 +1,6 @@
 import { MouseEvent, useEffect, useRef, useState } from 'react';
-import { Theme, ThemeColors, videoPlayer } from '../../core';
+import { Theme, ThemeColors, } from '../../core';
+import { useMediaPlayer } from '../../hooks';
 import { cn } from '../../utils';
 import { ButtonProps, ButtonSizes, ButtonTheme } from '../shared/Button';
 
@@ -39,6 +40,7 @@ export const TimelineProgress = ({
     const [timelineInfo, setTimelineInfo] = useState({ currentTime: 0, duration: 0, percentage: 0 });
     const [tooltip, setTooltip] = useState({ visible: false, position: 0, time: 0 });
     const progressContainerRef = useRef<HTMLDivElement>(null);
+    const { videoPlayer } = useMediaPlayer()
 
     useEffect(() => {
         videoPlayer.onTimelineCallback((info) => {

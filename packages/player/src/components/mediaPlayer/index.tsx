@@ -1,17 +1,25 @@
-import { useEffect, useRef } from 'react';
-import { videoPlayer } from '../../core';
+import { createContext, useEffect, useMemo, useRef } from 'react';
+import { VideoPlayer, VideoPlayerInstance } from '../../core';
 import { VideoJsPlayer, VideoJsPlayerOptions } from '../../types/player';
 
 export interface MediaPlayerProps {
     options: VideoJsPlayerOptions,
     onReady?: () => void
     className?: string
+    children?: React.ReactNode
 }
 
-export function MediaPlayer({ options, className, onReady }: MediaPlayerProps) {
+export interface MediaPlayerContextInterface {
+    videoPlayer: VideoPlayerInstance
+}
+
+export const MediaPlayerContext = createContext<MediaPlayerContextInterface | null>(null)
+
+export function MediaPlayer({ options, className, onReady, children }: MediaPlayerProps) {
 
     const playerRef = useRef<VideoJsPlayer | null>(null);
     const videoRef = useRef<HTMLDivElement | null>(null);
+    const videoPlayer = useRef<VideoPlayerInstance>(new VideoPlayer());
 
     useEffect(() => {
 
@@ -35,7 +43,7 @@ export function MediaPlayer({ options, className, onReady }: MediaPlayerProps) {
             }
             if (videoRef.current) videoRef.current.appendChild(videoElement);
 
-            const player = playerRef.current = videoPlayer.init(videoElement, options, onReady);
+            const player = playerRef.current = videoPlayer.current.init(videoElement, options, onReady);
 
         } else {
             const player = playerRef.current;
@@ -56,9 +64,20 @@ export function MediaPlayer({ options, className, onReady }: MediaPlayerProps) {
         };
     }, [playerRef]);
 
+    const defaultContext = useMemo(
+        () => ({
+            videoPlayer: videoPlayer.current
+        }),
+        [videoPlayer]
+    );
+
+
     return (
-        <div data-vjs-player className='dp-h-full'>
-            <div ref={videoRef} className='dp-h-full' />
-        </div>
+        <MediaPlayerContext.Provider value={defaultContext}>
+            <div data-vjs-player className='dp-h-full'>
+                <div ref={videoRef} className='dp-h-full' />
+                {children}
+            </div>
+        </MediaPlayerContext.Provider>
     )
 }

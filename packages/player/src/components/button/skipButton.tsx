@@ -1,5 +1,5 @@
 import { ElementType } from 'react';
-import { videoPlayer } from '../../core';
+import { useMediaPlayer } from '../../hooks';
 import { ButtonBaseProps } from '../shared';
 import { Button, ButtonProps } from '../shared/Button';
 
@@ -17,6 +17,7 @@ export const SkipButton = <T extends ElementType = "button">(
         ...props
     }: SkipButtonProps<T>) => {
     const theirProps = props as ButtonBaseProps<T>;
+    const { videoPlayer } = useMediaPlayer()
 
     const playToggle = () => {
         videoPlayer.seek(seek)

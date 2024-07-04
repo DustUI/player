@@ -1,5 +1,5 @@
 import { ElementType, useEffect, useState } from 'react';
-import { videoPlayer } from '../../core';
+import { useMediaPlayer } from '../../hooks';
 import { ButtonBaseProps } from '../shared';
 import { Button, ButtonProps } from '../shared/Button';
 
@@ -13,14 +13,17 @@ export const ToggleFullscreen = <T extends ElementType = "button">(
     }: ButtonProps<T>) => {
     const theirProps = props as ButtonBaseProps<T>;
 
+    const { videoPlayer } = useMediaPlayer()
+    const player = videoPlayer.player
+
     const [isFullscreen, setIsFullscreen] = useState(false)
 
     useEffect(() => {
         const handleTimeUpdate = () => {
-            setIsFullscreen(!videoPlayer?.player?.isFullscreen())
+            setIsFullscreen(!player?.isFullscreen())
         }
-        videoPlayer?.player?.on("fullscreenchange", handleTimeUpdate);
-    }, [])
+        player?.on("fullscreenchange", handleTimeUpdate);
+    }, [player])
 
     const fullscreenToggle = () => {
         videoPlayer.toggleFullscreen()

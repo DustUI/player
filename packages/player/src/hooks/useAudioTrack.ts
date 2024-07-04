@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { videoPlayer } from "../core";
+import { useMediaPlayer } from "./useMediaPlayer";
 
 interface AudioTrackItem {
   index: number;
@@ -14,6 +14,7 @@ interface AudioTrackItem {
 export const useAudioTrack = () => {
   const [isAvailable, setAvailable] = useState(false);
   const [tracks, setAudioTrack] = useState<AudioTrackItem[]>([]);
+  const { videoPlayer } = useMediaPlayer();
 
   const player: any = videoPlayer.player;
 

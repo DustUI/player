@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { videoPlayer } from "../core";
+import { useMediaPlayer } from "./useMediaPlayer";
 
 interface QualityLevel {
   id: string;
@@ -11,6 +11,8 @@ interface QualityLevel {
 }
 
 export function useQualityTrack() {
+  const { videoPlayer } = useMediaPlayer();
+
   const [tracks, setTracks] = useState<QualityLevel[]>(
     videoPlayer.getQualityTracks() || []
   );

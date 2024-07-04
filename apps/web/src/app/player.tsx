@@ -12,7 +12,8 @@ export default function Player() {
         responsive: true,
         sources: [
             {
-                src: "https://d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8",
+                src: "https://d2zihajmogu5jn.cloudfront.net/hls-webvtt/master.m3u8",
+                // src: "https://d2zihajmogu5jn.cloudfront.net/elephantsdream/hls/ed_hd.m3u8",
                 // src: 'https://livesim.dashif.org/livesim/mup_30/testpic_2s/Manifest.mpd',
                 // type: "application/x-mpegURL"
             },
@@ -25,7 +26,7 @@ export default function Player() {
     }
 
     return (<div className="flex">
-        <STVPlayer options={options} onReady={handleOnReady} />
+        <STVPlayer options={options} onReady={handleOnReady} theme="overlay" />
     </div>
     );
 }

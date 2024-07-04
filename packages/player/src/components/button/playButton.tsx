@@ -1,5 +1,5 @@
-import { ElementType, useEffect, useState } from 'react';
-import { videoPlayer } from '../../core';
+import { ElementType, useState } from 'react';
+import { useMediaPlayer } from '../../hooks';
 import { ButtonBaseProps } from '../shared';
 import { Button, ButtonProps } from '../shared/Button';
 
@@ -13,14 +13,14 @@ export const TogglePlay = <T extends ElementType = "button">(
     }: ButtonProps<T>) => {
     const theirProps = props as ButtonBaseProps<T>;
 
+    const { videoPlayer } = useMediaPlayer()
+    const player = videoPlayer.player
     const [isPlaying, setIsPlaying] = useState(false)
 
-    useEffect(() => {
-        const handleTimeUpdate = () => {
-            setIsPlaying(!videoPlayer?.player?.paused())
-        }
-        videoPlayer?.player?.on("timeupdate", handleTimeUpdate);
-    }, [])
+    const handleTimeUpdate = () => {
+        setIsPlaying(!player?.paused())
+    }
+    player?.on("timeupdate", handleTimeUpdate);
 
     const playToggle = () => {
         videoPlayer.togglePlayPause()
